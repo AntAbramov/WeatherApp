@@ -1,5 +1,3 @@
-// swiftlint:disable trailing_whitespace
-
 import UIKit
 
 class ResultViewController: UIViewController {
@@ -9,8 +7,4 @@ class ResultViewController: UIViewController {
         self.view.backgroundColor = .systemPink
         
     }
-    
-
-
-
 }

@@ -1,4 +1,3 @@
-// swiftlint:disable superfluous_disable_command trailing_whitespace
 import UIKit
 
 @main

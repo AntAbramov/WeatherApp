@@ -55,13 +55,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1224FF47327C1A4521B7B757 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		3A6324252992581900FEC599 /* MainTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +69,6 @@
 			children = (
 				3A767DD6298FD90000693D04 /* WeatherApp */,
 				3A767DD5298FD8FF00693D04 /* Products */,
-				1224FF47327C1A4521B7B757 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,10 +141,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A767DE8298FD90100693D04 /* Build configuration list for PBXNativeTarget "WeatherApp" */;
 			buildPhases = (
-				3A767DFB299011A100693D04 /* SwiftLint */,
 				3A767DD0298FD8FF00693D04 /* Sources */,
 				3A767DD1298FD8FF00693D04 /* Frameworks */,
 				3A767DD2298FD8FF00693D04 /* Resources */,
+				3A767DFB299011A100693D04 /* SwiftLint */,
 			);
 			buildRules = (
 			);
