@@ -1,5 +1,3 @@
-// swiftlint:disable trailing_whitespace
-
 import UIKit
 
 protocol MainViewProtocol: AnyObject {
@@ -10,8 +8,7 @@ class MainViewController: UIViewController, MainViewProtocol {
     var mainPresenter: MainPresenterProtocol!
     
     let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
-    let searchController = UISearchController(searchResultsController: ResultViewController())
-    
+    let searchController = UISearchController(searchResultsController: SearchViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +16,6 @@ class MainViewController: UIViewController, MainViewProtocol {
         navigationItem.searchController = searchController
         navigationItem.preferredSearchBarPlacement = .stacked
         navigationItem.hidesSearchBarWhenScrolling = false
-        
         
         configureMainTableView()
     }
@@ -47,19 +43,20 @@ class MainViewController: UIViewController, MainViewProtocol {
 
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = mainTableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifire, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+        guard let cell = mainTableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifire, for: indexPath)
+                as? MainTableViewCell else { return UITableViewCell() }
         cell.configureCell(with: Weather())
         return cell
     }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     
 }

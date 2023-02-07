@@ -1,5 +1,3 @@
-// swiftlint:disable trailing_whitespace
-
 import UIKit
 
 protocol SearchViewProtocol: AnyObject {
@@ -10,7 +8,7 @@ class SearchViewController: UIViewController, SearchViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemPink
     }
 
 }
