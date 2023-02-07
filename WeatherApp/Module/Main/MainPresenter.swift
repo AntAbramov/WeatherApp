@@ -1,6 +1,7 @@
 import UIKit
 
 protocol MainPresenterProtocol: AnyObject {
+    
 }
 
 class MainPresenterImplementation: MainPresenterProtocol {
