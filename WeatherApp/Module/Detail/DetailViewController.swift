@@ -1,3 +1,5 @@
+// swiftlint:disable trailing_whitespace
+
 import UIKit
 
 protocol DetailViewProtocol: AnyObject {
