@@ -19,7 +19,6 @@ class MainTableViewCell: UITableViewCell {
     }
     
     // MARK: - IBOutlet
-    
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!

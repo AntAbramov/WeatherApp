@@ -8,7 +8,7 @@ class SearchViewController: UIViewController, SearchViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemPink
     }
 
 }

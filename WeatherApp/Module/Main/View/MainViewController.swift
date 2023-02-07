@@ -8,7 +8,7 @@ class MainViewController: UIViewController, MainViewProtocol {
     var mainPresenter: MainPresenterProtocol!
     
     let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
-    let searchController = UISearchController(searchResultsController: ResultViewController())
+    let searchController = UISearchController(searchResultsController: SearchViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
