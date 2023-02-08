@@ -1,14 +1,9 @@
 import UIKit
 
-protocol MainViewProtocol: AnyObject {
-}
-
-class MainViewController: UIViewController, MainViewProtocol {
-    
-    var mainPresenter: MainPresenterProtocol!
+class MainViewController: UIViewController {
     
     let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
-    let searchController = UISearchController(searchResultsController: SearchViewController())
+    let searchController = UISearchController(searchResultsController: ResultViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
