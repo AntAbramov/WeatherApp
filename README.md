@@ -1,2 +1,2 @@
 # WeatherApp
-WeatherApp UIKit+MVP+Router+Assembly
+UIKit+MVC
