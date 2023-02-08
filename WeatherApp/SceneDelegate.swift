@@ -12,11 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.overrideUserInterfaceStyle = .dark
         
         // MARK: Entry point
-        let assemblyBuilder = AssemblyBuilder()
-        let navigationController = UINavigationController()
+        let navigationController = UINavigationController(rootViewController: MainViewController())
         navigationController.navigationBar.prefersLargeTitles = true
-        let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder)
-        router.initialViewController()
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
