@@ -5,6 +5,15 @@ class MainViewController: UIViewController {
     let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
     let searchController = UISearchController(searchResultsController: ResultViewController())
     
+    //TODO: fill array with relevant info
+    var weatherDataSource: [Weather] = {
+        var array = [Weather]()
+        for _ in 0...9 {
+            array.append(Weather())
+        }
+        return array
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Weather"
@@ -41,17 +50,25 @@ class MainViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        weatherDataSource.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = mainTableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifire, for: indexPath)
                 as? MainTableViewCell else { return UITableViewCell() }
-        cell.configureCell(with: Weather())
+        cell.configureCell(with: weatherDataSource[indexPath.row])
         return cell
     }
+    
 }
 
 // MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentModel = weatherDataSource[indexPath.row]
+        let detailVC = DetailViewController()
+        detailVC.model = currentModel
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
     
 }
