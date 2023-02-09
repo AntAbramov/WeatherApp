@@ -4,6 +4,7 @@ class MainViewController: UIViewController {
     
     let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
     let searchController = UISearchController(searchResultsController: ResultViewController())
+    let editButton = UIBarButtonItem()
     
     //TODO: fill array with relevant info
     var weatherDataSource: [Weather] = {
@@ -20,13 +21,30 @@ class MainViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.preferredSearchBarPlacement = .stacked
         navigationItem.hidesSearchBarWhenScrolling = false
-        
         configureMainTableView()
+        configureEditButton()
+        
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setMainTableViewConstraints()
+    }
+    
+    func configureEditButton() {
+        editButton.style = .plain
+        editButton.action = #selector(editPressed)
+        editButton.title = "Edit"
+        editButton.target = self
+        navigationItem.rightBarButtonItem = editButton
+    }
+    
+    @objc func editPressed() {
+        mainTableView.setEditing(!mainTableView.isEditing, animated: true)
+        editButton.title = mainTableView.isEditing ? "Done" : "Edit"
     }
     
     func configureMainTableView() {
@@ -49,9 +67,11 @@ class MainViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         weatherDataSource.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = mainTableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifire, for: indexPath)
                 as? MainTableViewCell else { return UITableViewCell() }
@@ -64,6 +84,16 @@ extension MainViewController: UITableViewDataSource {
             weatherDataSource.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let removedElement = weatherDataSource.remove(at: sourceIndexPath.row)
+        weatherDataSource.insert(removedElement, at: destinationIndexPath.row)
+        //save array to persistent storage to keep new order if app deleted (user defaults)
     }
     
 }
