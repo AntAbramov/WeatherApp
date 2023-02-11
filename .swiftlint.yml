@@ -3,6 +3,7 @@ disabled_rules:
   - comment_spacing
   - line_length
   - mark
+  - identifier_name
 
 excluded:
   - Carthage
