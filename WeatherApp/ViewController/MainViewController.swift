@@ -23,7 +23,6 @@ class MainViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         configureMainTableView()
         configureEditButton()
-        
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
         
