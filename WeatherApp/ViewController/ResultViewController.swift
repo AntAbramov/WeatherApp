@@ -42,5 +42,10 @@ extension ResultViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension ResultViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //По нотифай передаем координаты выбранного города в mainVC
+        let coordinate = Coordinate(lat: 10, lon: 11)
+        NotificationCenter.default.post(name: .selectCity, object: coordinate)
+        self.dismiss(animated: true)
+    }
 }

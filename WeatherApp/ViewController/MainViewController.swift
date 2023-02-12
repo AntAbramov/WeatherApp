@@ -9,6 +9,7 @@ final class MainViewController: UIViewController {
     //MARK: Service
     private let networkService = NetworkService()
     
+    //MARK: DataSource
     private var weatherDataSource: [Weather] = [Weather]() {
         didSet {
             DispatchQueue.main.async {
@@ -26,13 +27,15 @@ final class MainViewController: UIViewController {
         }
     }
     
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
+        configureNavigationItem()
         configureMainTableView()
         configureEditButton()
         fillCityCoordinates()
         obtainAllWeather()
+        createNotificationCenter()
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,11 +77,22 @@ final class MainViewController: UIViewController {
                 case .success(let weather):
                     self.weatherDataSource.append(weather)
                 case .failure(let error):
-                    //Cделать класс создающий алерты и здесь делать ему нотифай передавая туда описание ошибки (позможность перезапустить приложение)
+                    //TODO: Cделать класс создающий алерты и здесь делать ему нотифай передавая туда описание ошибки (позможность перезапустить приложение)
                     print(error)
                 }
             }
         }
+    }
+    
+    //MARK: - NotificationCenter
+    private func createNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(selectedCity), name: .selectCity, object: nil)
+        
+    }
+    
+    @objc private func selectedCity(notification: NSNotification) {
+        guard let coordinate = notification.object as? Coordinate else { return }
+        print(coordinate)
     }
     
     //FIXME: temp func
@@ -143,15 +157,14 @@ extension MainViewController: UITableViewDelegate {
     
 }
 
-
-
+//MARK: - Configure View
 extension MainViewController {
     func configureEditButton() {
         editButton.style = .plain
         editButton.action = #selector(editPressed)
         editButton.title = "Edit"
         editButton.target = self
-        navigationItem.rightBarButtonItem = editButton
+        
     }
     
     @objc func editPressed() {
@@ -167,11 +180,13 @@ extension MainViewController {
                                forCellReuseIdentifier: MainTableViewCell.identifire)
     }
     
-    func configureNavBar() {
+    func configureNavigationItem() {
         title = "Weather"
         navigationItem.searchController = searchController
+        searchController.delegate = self
         navigationItem.preferredSearchBarPlacement = .stacked
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.rightBarButtonItem = editButton
     }
     
     func setMainTableViewConstraints() {
@@ -181,4 +196,8 @@ extension MainViewController {
         mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         mainTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
+}
+
+extension MainViewController: UISearchControllerDelegate {
+    
 }

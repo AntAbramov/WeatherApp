@@ -24,6 +24,7 @@
 		3AEFA49D2998D8A000C3BBE7 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA49C2998D8A000C3BBE7 /* NetworkError.swift */; };
 		3AEFA49F2998D8F600C3BBE7 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA49E2998D8F600C3BBE7 /* Coordinate.swift */; };
 		3AEFA4A12998D96100C3BBE7 /* UrlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4A02998D96100C3BBE7 /* UrlType.swift */; };
+		3AEFA4A6299958BD00C3BBE7 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4A5299958BD00C3BBE7 /* NotificationCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		3AEFA49C2998D8A000C3BBE7 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		3AEFA49E2998D8F600C3BBE7 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		3AEFA4A02998D96100C3BBE7 /* UrlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlType.swift; sourceTree = "<group>"; };
+		3AEFA4A5299958BD00C3BBE7 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				3A767DD7298FD90000693D04 /* AppDelegate.swift */,
 				3A767DD9298FD90000693D04 /* SceneDelegate.swift */,
+				3AEFA4A5299958BD00C3BBE7 /* NotificationCenter.swift */,
 				3AEFA49B2998D88D00C3BBE7 /* Network */,
 				3A63244D2992B80600FEC599 /* Model */,
 				3AEFA49529980FCF00C3BBE7 /* ViewController */,
@@ -162,8 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				3A767DDB298FD90000693D04 /* MainViewController.swift */,
-				3A767DEF2990063700693D04 /* DetailViewController.swift */,
 				3A767DED2990030C00693D04 /* ResultViewController.swift */,
+				3A767DEF2990063700693D04 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				3AEFA49F2998D8F600C3BBE7 /* Coordinate.swift in Sources */,
 				3A63241E2992549E00FEC599 /* Weather.swift in Sources */,
 				3A767DEE2990030C00693D04 /* ResultViewController.swift in Sources */,
+				3AEFA4A6299958BD00C3BBE7 /* NotificationCenter.swift in Sources */,
 				3A6324732994F89200FEC599 /* ResultTableViewCell.swift in Sources */,
 				3A767DDA298FD90000693D04 /* SceneDelegate.swift in Sources */,
 				3AEFA49D2998D8A000C3BBE7 /* NetworkError.swift in Sources */,
