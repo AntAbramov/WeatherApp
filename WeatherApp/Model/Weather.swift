@@ -1,10 +1,5 @@
-//MARK: Mock-model
-struct Weather {
-    
-}
-
 // MARK: - Weather
-struct Weatherr: Decodable {
+struct Weather: Decodable {
     let coord: Coord?
     let weather: [WeatherElement]?
     let base: String?

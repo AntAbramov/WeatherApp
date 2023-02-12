@@ -4,7 +4,7 @@ class NetworkService {
     
     private let session = URLSession.shared
     
-    func obtainData(url: URL, completion: @escaping (Result<Weatherr, Error>) -> Void) {
+    func obtainData(url: URL, completion: @escaping (Result<Weather, Error>) -> Void) {
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) { data, _, error in
             guard let data = data else {
@@ -16,18 +16,13 @@ class NetworkService {
                 return
             }
             
-            if let weather = try? JSONDecoder().decode(Weatherr.self, from: data) {
+            if let weather = try? JSONDecoder().decode(Weather.self, from: data) {
                 completion(.success(weather))
             } else {
                 completion(.failure(NetworkError.decodingFailed))
             }
         }
         task.resume()
-        
-    }
-    
-    func obtainDataSync(urls: [URL], completion: @escaping (Result<[Weatherr], NetworkError>) -> Void) {
-        
     }
     
 }

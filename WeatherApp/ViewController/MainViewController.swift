@@ -1,31 +1,94 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
+    //MARK: UI
     let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
     let searchController = UISearchController(searchResultsController: ResultViewController())
     let editButton = UIBarButtonItem()
     
+    //MARK: Service
+    let networkService = NetworkService()
+    
     //TODO: fill array with relevant info
-    var weatherDataSource: [Weather] = {
-        var array = [Weather]()
-        for _ in 0...9 {
-            array.append(Weather())
+    private var weatherDataSource: [Weather] = [Weather]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.mainTableView.reloadData()
+            }
         }
-        return array
-    }()
+    }
+    
+    //TODO: fill with user defaults
+    var cityCoordinates: [Coordinate] = [Coordinate]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.mainTableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Weather"
-        navigationItem.searchController = searchController
-        navigationItem.preferredSearchBarPlacement = .stacked
-        navigationItem.hidesSearchBarWhenScrolling = false
+        configureNavBar()
         configureMainTableView()
         configureEditButton()
-        let generator = UISelectionFeedbackGenerator()
-        generator.selectionChanged()
+//        let generator = UISelectionFeedbackGenerator()
+//        generator.selectionChanged()
         
+        fillCityCoordinates()
+        obtainAllWeather()
+        print(weatherDataSource.count)
+        
+    }
+    
+    //При старте прило
+    func obtainAllWeather() {
+        var localWeatherArray = [Weather]()
+        let dispatchGroup = DispatchGroup()
+        
+        cityCoordinates.forEach { coordinate in
+            guard let url = UrlType.weather.configureUrl(with: coordinate) else { return }
+            dispatchGroup.enter()
+            networkService.obtainData(url: url) { (result) in
+                switch result {
+                case .success(let weather):
+                    localWeatherArray.append(weather)
+                case .failure(let error):
+                    print(error)
+                }
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.weatherDataSource = localWeatherArray
+        }
+        
+    }
+    
+    //для вновь добавленного города
+    func obtainWeather(by coordinate: Coordinate) {
+        if let url = UrlType.weather.configureUrl(with: coordinate) {
+            networkService.obtainData(url: url) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let weather):
+                    self.weatherDataSource.append(weather)
+                case .failure(let error):
+                    //Cделать класс создающий алерты и здесь делать ему нотифай передавая туда описание ошибки (позможность перезапустить приложение)
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    
+    
+    //FIXME: Delete func
+    func fillCityCoordinates() {
+        for _ in 0...4 {
+            cityCoordinates.append(Coordinate(lat: 10, lon: 10))
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -52,6 +115,13 @@ class MainViewController: UIViewController {
         mainTableView.delegate = self
         mainTableView.register(MainTableViewCell.nib(),
                                forCellReuseIdentifier: MainTableViewCell.identifire)
+    }
+    
+    func configureNavBar() {
+        title = "Weather"
+        navigationItem.searchController = searchController
+        navigationItem.preferredSearchBarPlacement = .stacked
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     func setMainTableViewConstraints() {
