@@ -23,8 +23,8 @@
                             <constraint firstAttribute="width" constant="60" id="TFd-Ns-Nsc"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSQ-8l-8hO">
-                        <rect key="frame" x="240" y="10" width="66" height="41"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSQ-8l-8hO">
+                        <rect key="frame" x="268" y="10" width="38" height="41"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="34"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -35,8 +35,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFl-HT-Vyl">
-                        <rect key="frame" x="84" y="10" width="93" height="27"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFl-HT-Vyl">
+                        <rect key="frame" x="84" y="10" width="40" height="27"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

@@ -1,15 +1,14 @@
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     //MARK: UI
-    let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
-    let searchController = UISearchController(searchResultsController: ResultViewController())
-    let editButton = UIBarButtonItem()
+    private let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
+    private let searchController = UISearchController(searchResultsController: ResultViewController())
+    private let editButton = UIBarButtonItem()
     
     //MARK: Service
-    let networkService = NetworkService()
+    private let networkService = NetworkService()
     
-    //TODO: fill array with relevant info
     private var weatherDataSource: [Weather] = [Weather]() {
         didSet {
             DispatchQueue.main.async {
@@ -19,7 +18,7 @@ class MainViewController: UIViewController {
     }
     
     //TODO: fill with user defaults
-    var cityCoordinates: [Coordinate] = [Coordinate]() {
+    private var cityCoordinates: [Coordinate] = [Coordinate]() {
         didSet {
             DispatchQueue.main.async {
                 self.mainTableView.reloadData()
@@ -32,16 +31,16 @@ class MainViewController: UIViewController {
         configureNavBar()
         configureMainTableView()
         configureEditButton()
-//        let generator = UISelectionFeedbackGenerator()
-//        generator.selectionChanged()
-        
         fillCityCoordinates()
         obtainAllWeather()
-        print(weatherDataSource.count)
-        
     }
     
-    //При старте прило
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setMainTableViewConstraints()
+    }
+    
+    //MARK: App start fetch (DispatchGroup)
     func obtainAllWeather() {
         var localWeatherArray = [Weather]()
         let dispatchGroup = DispatchGroup()
@@ -66,7 +65,7 @@ class MainViewController: UIViewController {
         
     }
     
-    //для вновь добавленного города
+    //MARK: New added city
     func obtainWeather(by coordinate: Coordinate) {
         if let url = UrlType.weather.configureUrl(with: coordinate) {
             networkService.obtainData(url: url) { [weak self] (result) in
@@ -82,69 +81,29 @@ class MainViewController: UIViewController {
         }
     }
     
-    
-    
-    //FIXME: Delete func
+    //FIXME: temp func
     func fillCityCoordinates() {
-        for _ in 0...4 {
-            cityCoordinates.append(Coordinate(lat: 10, lon: 10))
-        }
+        cityCoordinates.append(Coordinate(lat: 25.276987, lon: 55.296249))
+        cityCoordinates.append(Coordinate(lat: 40.416775, lon: -3.70379))
+        cityCoordinates.append(Coordinate(lat: 55.75866, lon: 37.61929))
+        cityCoordinates.append(Coordinate(lat: 41.88929, lon: 12.49355))
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setMainTableViewConstraints()
-    }
-    
-    func configureEditButton() {
-        editButton.style = .plain
-        editButton.action = #selector(editPressed)
-        editButton.title = "Edit"
-        editButton.target = self
-        navigationItem.rightBarButtonItem = editButton
-    }
-    
-    @objc func editPressed() {
-        mainTableView.setEditing(!mainTableView.isEditing, animated: true)
-        editButton.title = mainTableView.isEditing ? "Done" : "Edit"
-    }
-    
-    func configureMainTableView() {
-        view.addSubview(mainTableView)
-        mainTableView.dataSource = self
-        mainTableView.delegate = self
-        mainTableView.register(MainTableViewCell.nib(),
-                               forCellReuseIdentifier: MainTableViewCell.identifire)
-    }
-    
-    func configureNavBar() {
-        title = "Weather"
-        navigationItem.searchController = searchController
-        navigationItem.preferredSearchBarPlacement = .stacked
-        navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    func setMainTableViewConstraints() {
-        mainTableView.translatesAutoresizingMaskIntoConstraints = false
-        mainTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        mainTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        mainTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
-
+ 
 }
 
 // MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        weatherDataSource.count
+        cityCoordinates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = mainTableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifire, for: indexPath)
                 as? MainTableViewCell else { return UITableViewCell() }
-        cell.configureCell(with: weatherDataSource[indexPath.row])
+        if !weatherDataSource.isEmpty {
+            cell.configureCell(with: weatherDataSource[indexPath.row])
+        }
         return cell
     }
     
@@ -182,4 +141,44 @@ extension MainViewController: UITableViewDelegate {
         return .delete
     }
     
+}
+
+
+
+extension MainViewController {
+    func configureEditButton() {
+        editButton.style = .plain
+        editButton.action = #selector(editPressed)
+        editButton.title = "Edit"
+        editButton.target = self
+        navigationItem.rightBarButtonItem = editButton
+    }
+    
+    @objc func editPressed() {
+        mainTableView.setEditing(!mainTableView.isEditing, animated: true)
+        editButton.title = mainTableView.isEditing ? "Done" : "Edit"
+    }
+    
+    func configureMainTableView() {
+        view.addSubview(mainTableView)
+        mainTableView.dataSource = self
+        mainTableView.delegate = self
+        mainTableView.register(MainTableViewCell.nib(),
+                               forCellReuseIdentifier: MainTableViewCell.identifire)
+    }
+    
+    func configureNavBar() {
+        title = "Weather"
+        navigationItem.searchController = searchController
+        navigationItem.preferredSearchBarPlacement = .stacked
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    func setMainTableViewConstraints() {
+        mainTableView.translatesAutoresizingMaskIntoConstraints = false
+        mainTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        mainTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        mainTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
 }

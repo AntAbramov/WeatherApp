@@ -77,14 +77,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3A6324502994166100FEC599 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3A6324252992581900FEC599 /* MainTableView */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		3A6324512994184C00FEC599 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,7 +130,7 @@
 		3A767DF2299006A800693D04 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3A6324502994166100FEC599 /* View */,
+				3A6324252992581900FEC599 /* MainTableView */,
 			);
 			path = Main;
 			sourceTree = "<group>";
