@@ -17,6 +17,10 @@ class ResultTableViewCell: UITableViewCell {
 
     }
     
+    func configure(with cityName: String) {
+        cityNameLabel.text = cityName
+    }
+    
     static func nib() -> UINib? {
         UINib(nibName: "ResultTableViewCell", bundle: nil)
     }
