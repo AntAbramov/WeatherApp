@@ -1,2 +1,3 @@
 # WeatherApp
-UIKit+MVC
+## UIKit + MVC
+URLSession, GCD, UserDefaults, API OpenWeatherMap
