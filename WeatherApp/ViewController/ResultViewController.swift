@@ -1,4 +1,5 @@
 import UIKit
+import MapKit
 
 class ResultViewController: UIViewController {
     let tableView = UITableView(frame: CGRect(), style: .plain)

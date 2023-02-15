@@ -148,17 +148,9 @@
 		3A9F1F7A2994FB2200F3D0C2 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				3A9F1F7C2994FB4500F3D0C2 /* View */,
-			);
-			path = Result;
-			sourceTree = "<group>";
-		};
-		3A9F1F7C2994FB4500F3D0C2 /* View */ = {
-			isa = PBXGroup;
-			children = (
 				3A6324752994F89800FEC599 /* ResultTableViewCell */,
 			);
-			path = View;
+			path = Result;
 			sourceTree = "<group>";
 		};
 		3AEFA49529980FCF00C3BBE7 /* ViewController */ = {
@@ -446,7 +438,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VD6M5M3UN6;
+				DEVELOPMENT_TEAM = 6TL266BT36;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -460,7 +452,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.BlackNoir.WeatherApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.AntAbramov.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -475,7 +467,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VD6M5M3UN6;
+				DEVELOPMENT_TEAM = 6TL266BT36;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -489,7 +481,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.BlackNoir.WeatherApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.AntAbramov.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
