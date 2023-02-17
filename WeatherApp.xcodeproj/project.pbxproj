@@ -20,11 +20,12 @@
 		3A767DE4298FD90100693D04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A767DE2298FD90100693D04 /* LaunchScreen.storyboard */; };
 		3A767DEE2990030C00693D04 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A767DED2990030C00693D04 /* ResultViewController.swift */; };
 		3A767DF02990063700693D04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A767DEF2990063700693D04 /* DetailViewController.swift */; };
+		3AA7F7DD29A0269C00BD0299 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7F7DC29A0269C00BD0299 /* UserDefaultsKeys.swift */; };
 		3AEFA49A2998C54300C3BBE7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4992998C54300C3BBE7 /* NetworkService.swift */; };
 		3AEFA49D2998D8A000C3BBE7 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA49C2998D8A000C3BBE7 /* APIError.swift */; };
 		3AEFA49F2998D8F600C3BBE7 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA49E2998D8F600C3BBE7 /* Coordinate.swift */; };
 		3AEFA4A12998D96100C3BBE7 /* UrlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4A02998D96100C3BBE7 /* UrlType.swift */; };
-		3AEFA4A6299958BD00C3BBE7 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4A5299958BD00C3BBE7 /* NotificationCenter.swift */; };
+		3AEFA4A6299958BD00C3BBE7 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4A5299958BD00C3BBE7 /* NotificationKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,11 +44,12 @@
 		3A767DE5298FD90100693D04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A767DED2990030C00693D04 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		3A767DEF2990063700693D04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		3AA7F7DC29A0269C00BD0299 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		3AEFA4992998C54300C3BBE7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3AEFA49C2998D8A000C3BBE7 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		3AEFA49E2998D8F600C3BBE7 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		3AEFA4A02998D96100C3BBE7 /* UrlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlType.swift; sourceTree = "<group>"; };
-		3AEFA4A5299958BD00C3BBE7 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		3AEFA4A5299958BD00C3BBE7 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +120,8 @@
 			children = (
 				3A767DD7298FD90000693D04 /* AppDelegate.swift */,
 				3A767DD9298FD90000693D04 /* SceneDelegate.swift */,
-				3AEFA4A5299958BD00C3BBE7 /* NotificationCenter.swift */,
+				3AEFA4A5299958BD00C3BBE7 /* NotificationKeys.swift */,
+				3AA7F7DC29A0269C00BD0299 /* UserDefaultsKeys.swift */,
 				3AEFA49B2998D88D00C3BBE7 /* Network */,
 				3A63244D2992B80600FEC599 /* Model */,
 				3AEFA49529980FCF00C3BBE7 /* ViewController */,
@@ -287,8 +290,9 @@
 				3A6324232992581300FEC599 /* MainTableViewCell.swift in Sources */,
 				3AEFA49F2998D8F600C3BBE7 /* Coordinate.swift in Sources */,
 				3A63241E2992549E00FEC599 /* Weather.swift in Sources */,
+				3AA7F7DD29A0269C00BD0299 /* UserDefaultsKeys.swift in Sources */,
 				3A767DEE2990030C00693D04 /* ResultViewController.swift in Sources */,
-				3AEFA4A6299958BD00C3BBE7 /* NotificationCenter.swift in Sources */,
+				3AEFA4A6299958BD00C3BBE7 /* NotificationKeys.swift in Sources */,
 				3A6324732994F89200FEC599 /* ResultTableViewCell.swift in Sources */,
 				3A767DDA298FD90000693D04 /* SceneDelegate.swift in Sources */,
 				3AEFA49D2998D8A000C3BBE7 /* APIError.swift in Sources */,

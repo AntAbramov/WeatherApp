@@ -17,9 +17,10 @@ final class MainViewController: UIViewController {
         }
     }
     
-    //TODO: fill with user defaults
     private var cityCoordinates: [Coordinate] = [Coordinate]() {
         didSet {
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(self.cityCoordinates),
+                                      forKey: UserDefaultsKeys.cities)
             DispatchQueue.main.async {
                 self.mainTableView.reloadData()
             }
@@ -31,9 +32,9 @@ final class MainViewController: UIViewController {
         configureNavigationItem()
         configureMainTableView()
         configureEditButton()
-        fillCityCoordinates()
         obtainAllWeather()
         createNotificationCenter()
+        fetchCityCoordinates()
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,12 +42,14 @@ final class MainViewController: UIViewController {
         setMainTableViewConstraints()
     }
     
-    //FIXME: temp func
-    func fillCityCoordinates() {
-        cityCoordinates.append(Coordinate(lat: 25.276987, lon: 55.296249))
-        cityCoordinates.append(Coordinate(lat: 40.416775, lon: -3.70379))
-        cityCoordinates.append(Coordinate(lat: 55.75866, lon: 37.61929))
-        cityCoordinates.append(Coordinate(lat: 41.88929, lon: 12.49355))
+    func fetchCityCoordinates() {
+        guard let cityLists = UserDefaults.standard.value(forKey: UserDefaultsKeys.cities) as? Data else { return }
+        if let cityList = try? PropertyListDecoder().decode([Coordinate].self, from: cityLists) {
+            cityCoordinates = cityList
+            DispatchQueue.global().async {
+                self.obtainAllWeather()
+            }
+        }
     }
     
     //MARK: On app start fetching (DispatchGroup)
@@ -98,6 +101,7 @@ final class MainViewController: UIViewController {
     @objc private func selectedCity(notification: NSNotification) {
         guard let cityCoordinate = notification.object as? CLLocationCoordinate2D else { return }
         let coordinate = Coordinate(lat: cityCoordinate.latitude, lon: cityCoordinate.longitude)
+        cityCoordinates.append(coordinate)
         obtainWeather(by: coordinate)
     }
     
@@ -172,9 +176,11 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let removedElement = weatherDataSource.remove(at: sourceIndexPath.row)
-        weatherDataSource.insert(removedElement, at: destinationIndexPath.row)
-        //save array to persistent storage to keep new order if app deleted (user defaults)
+        let removedWeatherElement = weatherDataSource.remove(at: sourceIndexPath.row)
+        weatherDataSource.insert(removedWeatherElement, at: destinationIndexPath.row)
+        
+        let removedCoordinateElement = cityCoordinates.remove(at: sourceIndexPath.row)
+        cityCoordinates.insert(removedCoordinateElement, at: destinationIndexPath.row)
     }
     
 }
