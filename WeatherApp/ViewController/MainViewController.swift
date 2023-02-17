@@ -1,4 +1,5 @@
 import UIKit
+import MapKit
 
 final class MainViewController: UIViewController {
     //MARK: UI
@@ -6,12 +7,8 @@ final class MainViewController: UIViewController {
     private let resultVC = ResultViewController()
     private let searchController = UISearchController(searchResultsController: ResultViewController())
     private let editButton = UIBarButtonItem()
-    
-    
-    //MARK: Service
     private let networkService = NetworkService()
     
-    //MARK: DataSource
     private var weatherDataSource: [Weather] = [Weather]() {
         didSet {
             DispatchQueue.main.async {
@@ -29,7 +26,6 @@ final class MainViewController: UIViewController {
         }
     }
     
-    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItem()
@@ -45,7 +41,15 @@ final class MainViewController: UIViewController {
         setMainTableViewConstraints()
     }
     
-    //MARK: App start fetch (DispatchGroup)
+    //FIXME: temp func
+    func fillCityCoordinates() {
+        cityCoordinates.append(Coordinate(lat: 25.276987, lon: 55.296249))
+        cityCoordinates.append(Coordinate(lat: 40.416775, lon: -3.70379))
+        cityCoordinates.append(Coordinate(lat: 55.75866, lon: 37.61929))
+        cityCoordinates.append(Coordinate(lat: 41.88929, lon: 12.49355))
+    }
+    
+    //MARK: On app start fetching (DispatchGroup)
     func obtainAllWeather() {
         var localWeatherArray = [Weather]()
         let dispatchGroup = DispatchGroup()
@@ -70,7 +74,6 @@ final class MainViewController: UIViewController {
         
     }
     
-    //MARK: New added city
     func obtainWeather(by coordinate: Coordinate) {
         if let url = UrlType.weather.configureUrl(with: coordinate) {
             networkService.obtainData(url: url) { [weak self] (result) in
@@ -79,7 +82,8 @@ final class MainViewController: UIViewController {
                 case .success(let weather):
                     self.weatherDataSource.append(weather)
                 case .failure(let error):
-                    //TODO: Cделать класс создающий алерты и здесь делать ему нотифай передавая туда описание ошибки (позможность перезапустить приложение)
+                    //TODO: Cделать класс создающий алерты
+                    //и здесь делать ему нотифай передавая туда описание ошибки (позможность перезапустить приложение)
                     print(error)
                 }
             }
@@ -93,16 +97,49 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func selectedCity(notification: NSNotification) {
-        guard let coordinate = notification.object as? Coordinate else { return }
-        print(coordinate)
+        guard let cityCoordinate = notification.object as? CLLocationCoordinate2D else { return }
+        let coordinate = Coordinate(lat: cityCoordinate.latitude, lon: cityCoordinate.longitude)
+        obtainWeather(by: coordinate)
     }
     
-    //FIXME: temp func
-    func fillCityCoordinates() {
-        cityCoordinates.append(Coordinate(lat: 25.276987, lon: 55.296249))
-        cityCoordinates.append(Coordinate(lat: 40.416775, lon: -3.70379))
-        cityCoordinates.append(Coordinate(lat: 55.75866, lon: 37.61929))
-        cityCoordinates.append(Coordinate(lat: 41.88929, lon: 12.49355))
+    // MARK: - Configuration
+    func configureEditButton() {
+        editButton.style = .plain
+        editButton.action = #selector(editPressed)
+        editButton.title = "Edit"
+        editButton.target = self
+        editButton.tintColor = .white
+    }
+    
+    @objc func editPressed() {
+        mainTableView.setEditing(!mainTableView.isEditing, animated: true)
+        editButton.title = mainTableView.isEditing ? "Done" : "Edit"
+    }
+    
+    func configureMainTableView() {
+        view.addSubview(mainTableView)
+        mainTableView.dataSource = self
+        mainTableView.delegate = self
+        mainTableView.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainTableViewCell.identifire)
+    }
+    
+    func configureNavigationItem() {
+        title = "Weather"
+        navigationItem.searchController = searchController
+        searchController.searchBar.tintColor = .white
+        searchController.searchResultsUpdater = self
+        navigationItem.preferredSearchBarPlacement = .stacked
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.rightBarButtonItem = editButton
+    }
+    
+    //MARK: Constraints
+    func setMainTableViewConstraints() {
+        mainTableView.translatesAutoresizingMaskIntoConstraints = false
+        mainTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        mainTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        mainTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
  
 }
@@ -159,48 +196,7 @@ extension MainViewController: UITableViewDelegate {
     
 }
 
-//MARK: - Configure View
-extension MainViewController {
-    func configureEditButton() {
-        editButton.style = .plain
-        editButton.action = #selector(editPressed)
-        editButton.title = "Edit"
-        editButton.target = self
-        editButton.tintColor = .white
-    }
-    
-    @objc func editPressed() {
-        mainTableView.setEditing(!mainTableView.isEditing, animated: true)
-        editButton.title = mainTableView.isEditing ? "Done" : "Edit"
-    }
-    
-    func configureMainTableView() {
-        view.addSubview(mainTableView)
-        mainTableView.dataSource = self
-        mainTableView.delegate = self
-        mainTableView.register(MainTableViewCell.nib(),
-                               forCellReuseIdentifier: MainTableViewCell.identifire)
-    }
-    
-    func configureNavigationItem() {
-        title = "Weather"
-        navigationItem.searchController = searchController
-        searchController.searchBar.tintColor = .white
-        searchController.searchResultsUpdater = self
-        navigationItem.preferredSearchBarPlacement = .stacked
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.rightBarButtonItem = editButton
-    }
-    
-    func setMainTableViewConstraints() {
-        mainTableView.translatesAutoresizingMaskIntoConstraints = false
-        mainTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        mainTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        mainTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
-}
-
+// MARK: - UISearchResultsUpdating
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
