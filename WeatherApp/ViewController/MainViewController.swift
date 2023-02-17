@@ -2,7 +2,7 @@ import UIKit
 import MapKit
 
 final class MainViewController: UIViewController {
-    //MARK: UI
+    
     private let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
     private let resultVC = ResultViewController()
     private let searchController = UISearchController(searchResultsController: ResultViewController())
@@ -93,7 +93,6 @@ final class MainViewController: UIViewController {
     //MARK: - NotificationCenter
     private func createNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(selectedCity), name: .selectCity, object: nil)
-        
     }
     
     @objc private func selectedCity(notification: NSNotification) {
@@ -127,6 +126,7 @@ final class MainViewController: UIViewController {
         title = "Weather"
         navigationItem.searchController = searchController
         searchController.searchBar.tintColor = .white
+        searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         navigationItem.preferredSearchBarPlacement = .stacked
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -148,7 +148,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cityCoordinates.count
+        weatherDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -202,5 +202,11 @@ extension MainViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else { return }
         let destinationVC = searchController.searchResultsController as? ResultViewController
         destinationVC?.searchText = text
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.text?.removeAll()
     }
 }
