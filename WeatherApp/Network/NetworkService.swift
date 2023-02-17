@@ -8,7 +8,7 @@ class NetworkService {
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) { data, _, error in
             guard let data = data else {
-                completion(.failure(NetworkError.invalidData))
+                completion(.failure(APIError.invalidData))
                 return
             }
             if let error = error {
@@ -19,7 +19,7 @@ class NetworkService {
             if let weather = try? JSONDecoder().decode(Weather.self, from: data) {
                 completion(.success(weather))
             } else {
-                completion(.failure(NetworkError.decodingFailed))
+                completion(.failure(APIError.decodingFailed))
             }
         }
         task.resume()

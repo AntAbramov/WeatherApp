@@ -1,26 +1,24 @@
-//
-//  ResultTableViewCell.swift
-//  WeatherApp
-//
-//  Created by Anton Abramov on 09.02.2023.
-//
-
 import UIKit
+import MapKit
 
 class ResultTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cityNameLabel: UILabel!
     
+    var searchData: MKLocalSearchCompletion? {
+        didSet {
+            guard let cityData = searchData else {
+                return
+            }
+            cityNameLabel.text = cityData.title
+        }
+    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+    func configure(data: MKLocalSearchCompletion) {
+        searchData = data
     }
     
-    func configure(with cityName: String) {
-        cityNameLabel.text = cityName
-    }
-    
+    //MARK: Registration
     static func nib() -> UINib? {
         UINib(nibName: "ResultTableViewCell", bundle: nil)
     }

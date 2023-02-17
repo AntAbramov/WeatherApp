@@ -3,8 +3,10 @@ import UIKit
 final class MainViewController: UIViewController {
     //MARK: UI
     private let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
+    private let resultVC = ResultViewController()
     private let searchController = UISearchController(searchResultsController: ResultViewController())
     private let editButton = UIBarButtonItem()
+    
     
     //MARK: Service
     private let networkService = NetworkService()
@@ -164,7 +166,7 @@ extension MainViewController {
         editButton.action = #selector(editPressed)
         editButton.title = "Edit"
         editButton.target = self
-        
+        editButton.tintColor = .white
     }
     
     @objc func editPressed() {
@@ -183,7 +185,8 @@ extension MainViewController {
     func configureNavigationItem() {
         title = "Weather"
         navigationItem.searchController = searchController
-        searchController.delegate = self
+        searchController.searchBar.tintColor = .white
+        searchController.searchResultsUpdater = self
         navigationItem.preferredSearchBarPlacement = .stacked
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.rightBarButtonItem = editButton
@@ -198,6 +201,10 @@ extension MainViewController {
     }
 }
 
-extension MainViewController: UISearchControllerDelegate {
-    
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        let destinationVC = searchController.searchResultsController as? ResultViewController
+        destinationVC?.searchText = text
+    }
 }
