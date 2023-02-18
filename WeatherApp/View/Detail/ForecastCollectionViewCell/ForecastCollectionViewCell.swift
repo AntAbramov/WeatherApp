@@ -16,7 +16,12 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         
     }
     
-    // MARK: - Registration
+    func configure() {
+        self.backView.backgroundColor = .darkGray
+        self.backView.layer.cornerRadius = 10
+    }
+    
+    
     static let identifire = "ForecastCollectionViewCell"
     
     static func nib() -> UINib? {

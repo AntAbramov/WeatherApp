@@ -13,19 +13,14 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
         navigationController?.navigationBar.tintColor = .white
         hourlyForecastCollectionView.delegate = self
         hourlyForecastCollectionView.dataSource = self
         hourlyForecastCollectionView.register(ForecastCollectionViewCell.nib(),
                                               forCellWithReuseIdentifier: ForecastCollectionViewCell.identifire)
-        hourlyForecastCollectionView.isScrollEnabled = true
+        hourlyForecastCollectionView.showsHorizontalScrollIndicator = false
         
     }
-    
-}
-
-extension DetailViewController: UICollectionViewDelegate {
     
 }
 
@@ -38,7 +33,7 @@ extension DetailViewController: UICollectionViewDataSource {
         guard let cell = hourlyForecastCollectionView.dequeueReusableCell(withReuseIdentifier: ForecastCollectionViewCell.identifire, for: indexPath) as? ForecastCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
+        cell.configure()
         return cell
     }
     
@@ -46,10 +41,7 @@ extension DetailViewController: UICollectionViewDataSource {
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 11
     }
 }
+
