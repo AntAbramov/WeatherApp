@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A22F87A29A0D8740030FE25 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22F87829A0D8740030FE25 /* DetailViewController.swift */; };
+		3A22F87B29A0D8740030FE25 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A22F87929A0D8740030FE25 /* DetailViewController.xib */; };
+		3A22F87F29A0E0310030FE25 /* ForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22F87D29A0E0310030FE25 /* ForecastCollectionViewCell.swift */; };
+		3A22F88029A0E0310030FE25 /* ForecastCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A22F87E29A0E0310030FE25 /* ForecastCollectionViewCell.xib */; };
 		3A63241E2992549E00FEC599 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63241D2992549E00FEC599 /* Weather.swift */; };
 		3A6324232992581300FEC599 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6324212992581300FEC599 /* MainTableViewCell.swift */; };
 		3A6324242992581300FEC599 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6324222992581300FEC599 /* MainTableViewCell.xib */; };
@@ -19,7 +23,6 @@
 		3A767DE1298FD90100693D04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A767DE0298FD90100693D04 /* Assets.xcassets */; };
 		3A767DE4298FD90100693D04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A767DE2298FD90100693D04 /* LaunchScreen.storyboard */; };
 		3A767DEE2990030C00693D04 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A767DED2990030C00693D04 /* ResultViewController.swift */; };
-		3A767DF02990063700693D04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A767DEF2990063700693D04 /* DetailViewController.swift */; };
 		3AA7F7DD29A0269C00BD0299 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7F7DC29A0269C00BD0299 /* UserDefaultsKeys.swift */; };
 		3AEFA49A2998C54300C3BBE7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4992998C54300C3BBE7 /* NetworkService.swift */; };
 		3AEFA49D2998D8A000C3BBE7 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA49C2998D8A000C3BBE7 /* APIError.swift */; };
@@ -29,6 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A22F87829A0D8740030FE25 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		3A22F87929A0D8740030FE25 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		3A22F87D29A0E0310030FE25 /* ForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		3A22F87E29A0E0310030FE25 /* ForecastCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastCollectionViewCell.xib; sourceTree = "<group>"; };
 		3A63241D2992549E00FEC599 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		3A6324212992581300FEC599 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		3A6324222992581300FEC599 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
@@ -43,7 +50,6 @@
 		3A767DE3298FD90100693D04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A767DE5298FD90100693D04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A767DED2990030C00693D04 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
-		3A767DEF2990063700693D04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3AA7F7DC29A0269C00BD0299 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		3AEFA4992998C54300C3BBE7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3AEFA49C2998D8A000C3BBE7 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -63,13 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A6324252992581900FEC599 /* MainTableView */ = {
+		3A22F87C29A0E0010030FE25 /* ForecastCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3A22F87D29A0E0310030FE25 /* ForecastCollectionViewCell.swift */,
+				3A22F87E29A0E0310030FE25 /* ForecastCollectionViewCell.xib */,
+			);
+			path = ForecastCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		3A6324252992581900FEC599 /* MainTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				3A6324212992581300FEC599 /* MainTableViewCell.swift */,
 				3A6324222992581300FEC599 /* MainTableViewCell.xib */,
 			);
-			path = MainTableView;
+			path = MainTableViewCell;
 			sourceTree = "<group>";
 		};
 		3A63244D2992B80600FEC599 /* Model */ = {
@@ -136,7 +151,7 @@
 		3A767DF2299006A800693D04 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3A6324252992581900FEC599 /* MainTableView */,
+				3A6324252992581900FEC599 /* MainTableViewCell */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -144,6 +159,8 @@
 		3A767DF4299006C800693D04 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				3A22F87929A0D8740030FE25 /* DetailViewController.xib */,
+				3A22F87C29A0E0010030FE25 /* ForecastCollectionViewCell */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -161,7 +178,7 @@
 			children = (
 				3A767DDB298FD90000693D04 /* MainViewController.swift */,
 				3A767DED2990030C00693D04 /* ResultViewController.swift */,
-				3A767DEF2990063700693D04 /* DetailViewController.swift */,
+				3A22F87829A0D8740030FE25 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -246,9 +263,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A6324742994F89200FEC599 /* ResultTableViewCell.xib in Resources */,
+				3A22F87B29A0D8740030FE25 /* DetailViewController.xib in Resources */,
 				3A767DE4298FD90100693D04 /* LaunchScreen.storyboard in Resources */,
 				3A767DE1298FD90100693D04 /* Assets.xcassets in Resources */,
 				3A6324242992581300FEC599 /* MainTableViewCell.xib in Resources */,
+				3A22F88029A0E0310030FE25 /* ForecastCollectionViewCell.xib in Resources */,
 				3A767DDF298FD90000693D04 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,14 +305,15 @@
 				3AEFA4A12998D96100C3BBE7 /* UrlType.swift in Sources */,
 				3A767DDC298FD90000693D04 /* MainViewController.swift in Sources */,
 				3A767DD8298FD90000693D04 /* AppDelegate.swift in Sources */,
-				3A767DF02990063700693D04 /* DetailViewController.swift in Sources */,
 				3A6324232992581300FEC599 /* MainTableViewCell.swift in Sources */,
 				3AEFA49F2998D8F600C3BBE7 /* Coordinate.swift in Sources */,
 				3A63241E2992549E00FEC599 /* Weather.swift in Sources */,
 				3AA7F7DD29A0269C00BD0299 /* UserDefaultsKeys.swift in Sources */,
+				3A22F87F29A0E0310030FE25 /* ForecastCollectionViewCell.swift in Sources */,
 				3A767DEE2990030C00693D04 /* ResultViewController.swift in Sources */,
 				3AEFA4A6299958BD00C3BBE7 /* NotificationKeys.swift in Sources */,
 				3A6324732994F89200FEC599 /* ResultTableViewCell.swift in Sources */,
+				3A22F87A29A0D8740030FE25 /* DetailViewController.swift in Sources */,
 				3A767DDA298FD90000693D04 /* SceneDelegate.swift in Sources */,
 				3AEFA49D2998D8A000C3BBE7 /* APIError.swift in Sources */,
 			);

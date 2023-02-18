@@ -85,8 +85,6 @@ final class MainViewController: UIViewController {
                 case .success(let weather):
                     self.weatherDataSource.append(weather)
                 case .failure(let error):
-                    //TODO: Cделать класс создающий алерты
-                    //и здесь делать ему нотифай передавая туда описание ошибки (позможность перезапустить приложение)
                     print(error)
                 }
             }
@@ -158,16 +156,15 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = mainTableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifire, for: indexPath)
                 as? MainTableViewCell else { return UITableViewCell() }
-        if !weatherDataSource.isEmpty {
-            cell.configureCell(with: weatherDataSource[indexPath.row])
-        }
+        cell.configureCell(with: weatherDataSource[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             weatherDataSource.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .left)
+            cityCoordinates.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .top)
         }
     }
     
