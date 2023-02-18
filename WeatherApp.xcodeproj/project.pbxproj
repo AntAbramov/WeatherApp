@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A004B2029A124530082C118 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A004B1E29A124530082C118 /* ForecastTableViewCell.swift */; };
+		3A004B2129A124530082C118 /* ForecastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A004B1F29A124530082C118 /* ForecastTableViewCell.xib */; };
 		3A22F87A29A0D8740030FE25 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22F87829A0D8740030FE25 /* DetailViewController.swift */; };
 		3A22F87B29A0D8740030FE25 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A22F87929A0D8740030FE25 /* DetailViewController.xib */; };
 		3A22F87F29A0E0310030FE25 /* ForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22F87D29A0E0310030FE25 /* ForecastCollectionViewCell.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A004B1E29A124530082C118 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
+		3A004B1F29A124530082C118 /* ForecastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastTableViewCell.xib; sourceTree = "<group>"; };
 		3A22F87829A0D8740030FE25 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3A22F87929A0D8740030FE25 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3A22F87D29A0E0310030FE25 /* ForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -69,6 +73,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A004B1D29A124210082C118 /* ForecastTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3A004B1E29A124530082C118 /* ForecastTableViewCell.swift */,
+				3A004B1F29A124530082C118 /* ForecastTableViewCell.xib */,
+			);
+			path = ForecastTableViewCell;
+			sourceTree = "<group>";
+		};
 		3A22F87C29A0E0010030FE25 /* ForecastCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +172,7 @@
 		3A767DF4299006C800693D04 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				3A004B1D29A124210082C118 /* ForecastTableViewCell */,
 				3A22F87929A0D8740030FE25 /* DetailViewController.xib */,
 				3A22F87C29A0E0010030FE25 /* ForecastCollectionViewCell */,
 			);
@@ -266,6 +280,7 @@
 				3A22F87B29A0D8740030FE25 /* DetailViewController.xib in Resources */,
 				3A767DE4298FD90100693D04 /* LaunchScreen.storyboard in Resources */,
 				3A767DE1298FD90100693D04 /* Assets.xcassets in Resources */,
+				3A004B2129A124530082C118 /* ForecastTableViewCell.xib in Resources */,
 				3A6324242992581300FEC599 /* MainTableViewCell.xib in Resources */,
 				3A22F88029A0E0310030FE25 /* ForecastCollectionViewCell.xib in Resources */,
 				3A767DDF298FD90000693D04 /* Main.storyboard in Resources */,
@@ -301,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A004B2029A124530082C118 /* ForecastTableViewCell.swift in Sources */,
 				3AEFA49A2998C54300C3BBE7 /* NetworkService.swift in Sources */,
 				3AEFA4A12998D96100C3BBE7 /* UrlType.swift in Sources */,
 				3A767DDC298FD90000693D04 /* MainViewController.swift in Sources */,

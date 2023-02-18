@@ -17,10 +17,9 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     }
     
     func configure() {
-        self.backView.backgroundColor = .darkGray
+        self.backView.backgroundColor = .tertiarySystemBackground
         self.backView.layer.cornerRadius = 10
     }
-    
     
     static let identifire = "ForecastCollectionViewCell"
     
