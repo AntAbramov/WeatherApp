@@ -91,6 +91,21 @@ final class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - Forecast
+    func obtainForecasr(by coordinates: Coordinate) {
+        if let url = UrlType.forecast.configureUrl(with: coordinates) {
+            networkService.obtainData(url: url) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let forecast):
+                    print("success \(forecast)")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
     //MARK: - NotificationCenter
     private func createNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(selectedCity), name: .selectCity, object: nil)

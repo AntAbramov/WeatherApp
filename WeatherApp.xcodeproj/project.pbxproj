@@ -31,6 +31,7 @@
 		3AEFA49F2998D8F600C3BBE7 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA49E2998D8F600C3BBE7 /* Coordinate.swift */; };
 		3AEFA4A12998D96100C3BBE7 /* UrlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4A02998D96100C3BBE7 /* UrlType.swift */; };
 		3AEFA4A6299958BD00C3BBE7 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFA4A5299958BD00C3BBE7 /* NotificationKeys.swift */; };
+		3AF8C39729B5272B000AB436 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF8C39629B5272B000AB436 /* Forecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		3AEFA49E2998D8F600C3BBE7 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		3AEFA4A02998D96100C3BBE7 /* UrlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlType.swift; sourceTree = "<group>"; };
 		3AEFA4A5299958BD00C3BBE7 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
+		3AF8C39629B5272B000AB436 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				3A63241D2992549E00FEC599 /* Weather.swift */,
+				3AF8C39629B5272B000AB436 /* Forecast.swift */,
 				3AEFA49E2998D8F600C3BBE7 /* Coordinate.swift */,
 			);
 			path = Model;
@@ -321,6 +324,7 @@
 				3AEFA4A12998D96100C3BBE7 /* UrlType.swift in Sources */,
 				3A767DDC298FD90000693D04 /* MainViewController.swift in Sources */,
 				3A767DD8298FD90000693D04 /* AppDelegate.swift in Sources */,
+				3AF8C39729B5272B000AB436 /* Forecast.swift in Sources */,
 				3A6324232992581300FEC599 /* MainTableViewCell.swift in Sources */,
 				3AEFA49F2998D8F600C3BBE7 /* Coordinate.swift in Sources */,
 				3A63241E2992549E00FEC599 /* Weather.swift in Sources */,
