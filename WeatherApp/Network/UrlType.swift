@@ -23,7 +23,8 @@ enum UrlType {
         let lat = "lat=\(coordinate.lat)"
         let lon = "&lon=\(coordinate.lon)"
         let appid = "&appid="
-        let urlString = baseUrl + path + lat + lon + appid + apiKey
+        let units = "&units=metric"
+        let urlString = baseUrl + path + lat + lon + appid + apiKey + units
         return URL(string: urlString)
     }
     
