@@ -172,8 +172,8 @@
 		3A767DF4299006C800693D04 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				3A004B1D29A124210082C118 /* ForecastTableViewCell */,
 				3A22F87929A0D8740030FE25 /* DetailViewController.xib */,
+				3A004B1D29A124210082C118 /* ForecastTableViewCell */,
 				3A22F87C29A0E0010030FE25 /* ForecastCollectionViewCell */,
 			);
 			path = Detail;

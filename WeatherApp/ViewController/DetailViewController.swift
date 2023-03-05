@@ -23,15 +23,10 @@ class DetailViewController: UIViewController {
         dailyForecastTableView.delegate = self
         dailyForecastTableView.dataSource = self
         dailyForecastTableView.register(ForecastTableViewCell.nib(), forCellReuseIdentifier: ForecastTableViewCell.identifire)
-        
+        dailyForecastTableView.sectionHeaderTopPadding = 0
         dailyForecastTableView.showsVerticalScrollIndicator = false
         
-        // MARK: - tableHeaderView
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 30))
-        label.font = label.font.withSize(20)
-        label.text = "5 Days Forecast:"
-        label.textAlignment = .center
-        dailyForecastTableView.tableHeaderView = label
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
 }
@@ -58,18 +53,27 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension DetailViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        return 7
+    }
 }
 
 extension DetailViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         5
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = dailyForecastTableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.identifire, for: indexPath) as? ForecastTableViewCell else { return UITableViewCell() }
-        
+        cell.configure()
+        cell.selectionStyle = .none
         return cell
     }
-    
 }

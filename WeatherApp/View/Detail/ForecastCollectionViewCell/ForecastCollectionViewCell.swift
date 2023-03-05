@@ -11,11 +11,6 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var backView: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
     func configure() {
         self.backView.backgroundColor = .tertiarySystemBackground
         self.backView.layer.cornerRadius = 10
