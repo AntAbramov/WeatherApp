@@ -48,6 +48,9 @@
             <size key="customSize" width="75" height="110"/>
             <connections>
                 <outlet property="backView" destination="9Z0-ha-rIW" id="zZp-kf-KLN"/>
+                <outlet property="iconImageView" destination="Yos-g3-yeb" id="V5F-do-ud3"/>
+                <outlet property="temperatureLabel" destination="XE9-cU-vbB" id="IuP-1e-M4P"/>
+                <outlet property="timeLabel" destination="D7N-RU-13N" id="KKW-7F-lRa"/>
             </connections>
             <point key="canvasLocation" x="41.984732824427482" y="40.845070422535215"/>
         </collectionViewCell>

@@ -1,27 +1,81 @@
 import UIKit
 
+struct HourlyForecastInfo {
+    let time: String
+    let icon: String
+    let temp: String
+}
+
 class DetailViewController: UIViewController {
     
+    var weatherModel: Weather?
     var forecastModel: Forecast? {
         didSet {
-            print(forecastModel?.city?.name)
+            fillHourlyForecastInfoDataSource(with: forecastModel)
         }
     }
     
+    private var hourlyForecastInfoDataSource = [HourlyForecastInfo?]()
+        
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
-    @IBOutlet weak var conditionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var dailyForecastTableView: UITableView!
     @IBOutlet weak var hourlyForecastCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureDailyForecastTableView()
         configureHourlyForecastCollectionView()
         cunfigureNavigationController()
         
-        cityNameLabel.text = forecastModel?.city?.name
+        cityNameLabel.text = weatherModel?.name
+        
+        if let currentTemp = weatherModel?.main?.temp {
+            currentTemperatureLabel.text = "\(Int(currentTemp))℃"
+        }
+        
+        if let description = weatherModel?.weather?.first?.description {
+            self.descriptionLabel.text = description
+        }
+        
+    }
+    
+    private func fillHourlyForecastInfoDataSource(with model: Forecast?) {
+        guard let list = model?.list else { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        list.forEach { element in
+            var timeHour = String()
+            var icon = String()
+            var temp = String()
+            
+            if let dateStr = element.dtTxt {
+                if let date = dateFormatter.date(from: dateStr) {
+                    let hour = Calendar.current.component(.hour, from: date)
+                    timeHour = "\(hour)"
+                }
+            }
+            
+            if let temperature = element.main?.temp {
+                temp = "\(Int(temperature))℃"
+            }
+            
+            if let imageName = element.weather?.first?.icon {
+                icon = imageName
+            }
+            
+            let hourlyForecastInfoElement = HourlyForecastInfo(time: timeHour, icon: icon, temp: temp)
+            self.hourlyForecastInfoDataSource.append(hourlyForecastInfoElement)
+        }
+        
+        
+        
+        
+        
     }
     
 }
@@ -29,14 +83,14 @@ class DetailViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        17
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = hourlyForecastCollectionView.dequeueReusableCell(withReuseIdentifier: ForecastCollectionViewCell.identifire, for: indexPath) as? ForecastCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configure()
+        cell.configure(with: hourlyForecastInfoDataSource[indexPath.row])
         return cell
     }
     
@@ -74,6 +128,15 @@ extension DetailViewController: UITableViewDataSource {
         return cell
     }
 }
+
+
+
+
+
+
+
+
+
 
 // MARK: - DetailViewController Configuration
 extension DetailViewController {

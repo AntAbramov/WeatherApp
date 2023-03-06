@@ -209,10 +209,11 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if forecastDataSourceIsAvailable {
-            if let currentForecastModel = forecastDataSource?[indexPath.row] {
+        if forecastDataSourceIsAvailable && weatherDataSourceIsAvailable {
+            if let currentForecastModel = forecastDataSource?[indexPath.row], let currentWeatherModel = weatherDataSource?[indexPath.row] {
                 let detailVC = DetailViewController()
                 detailVC.forecastModel = currentForecastModel
+                detailVC.weatherModel = currentWeatherModel
                 navigationController?.pushViewController(detailVC, animated: true)
             }
         }

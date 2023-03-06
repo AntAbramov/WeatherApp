@@ -4,7 +4,7 @@ class MainTableViewCell: UITableViewCell {
     // MARK: - IBOutlet
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var cityNameLabel: UILabel!
-    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
     func configureCell(with model: Weather?) {
@@ -17,7 +17,7 @@ class MainTableViewCell: UITableViewCell {
         }
         
         if let description = model.weather?.first?.description {
-            self.currentTimeLabel.text = description
+            self.descriptionLabel.text = description
         }
         
         self.cityNameLabel.text = model.name

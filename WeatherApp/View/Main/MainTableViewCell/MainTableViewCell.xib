@@ -58,7 +58,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cityNameLabel" destination="zFl-HT-Vyl" id="eu2-C8-r2i"/>
-                <outlet property="currentTimeLabel" destination="nhP-HA-DC0" id="CUh-Oo-x7M"/>
+                <outlet property="descriptionLabel" destination="nhP-HA-DC0" id="CUh-Oo-x7M"/>
                 <outlet property="temperatureLabel" destination="dSQ-8l-8hO" id="Ho4-6M-F0z"/>
                 <outlet property="weatherImageView" destination="QJL-VL-TNU" id="Lov-Qf-AUB"/>
             </connections>
