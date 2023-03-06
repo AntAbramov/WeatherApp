@@ -4,7 +4,7 @@ class NetworkService {
     
     private let session = URLSession.shared
     
-    func obtainData(url: URL, completion: @escaping (Result<Weather, Error>) -> Void) {
+    func obtainWeather(url: URL, completion: @escaping (Result<Weather, Error>) -> Void) {
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) { data, _, error in
             guard let data = data else {
@@ -18,6 +18,27 @@ class NetworkService {
             
             if let weather = try? JSONDecoder().decode(Weather.self, from: data) {
                 completion(.success(weather))
+            } else {
+                completion(.failure(APIError.decodingFailed))
+            }
+        }
+        task.resume()
+    }
+    
+    func obtainForecast(url: URL, completion: @escaping (Result<Forecast, Error>) -> Void) {
+        let request = URLRequest(url: url)
+        let task = session.dataTask(with: request) { data, _, error in
+            guard let data = data else {
+                completion(.failure(APIError.invalidData))
+                return
+            }
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            if let forecast = try? JSONDecoder().decode(Forecast.self, from: data) {
+                completion(.success(forecast))
             } else {
                 completion(.failure(APIError.decodingFailed))
             }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -29,29 +29,28 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 22:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhP-HA-DC0">
-                        <rect key="frame" x="84" y="49" width="92" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFl-HT-Vyl">
                         <rect key="frame" x="84" y="10" width="40" height="27"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhP-HA-DC0">
+                        <rect key="frame" x="84" y="45" width="92" height="14.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="nhP-HA-DC0" secondAttribute="trailing" priority="999" constant="144" id="0S6-VC-8UX"/>
-                    <constraint firstAttribute="bottom" secondItem="nhP-HA-DC0" secondAttribute="bottom" constant="10" id="BEW-6G-ZsT"/>
                     <constraint firstItem="dSQ-8l-8hO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="NVP-8z-g5q"/>
                     <constraint firstAttribute="trailing" secondItem="dSQ-8l-8hO" secondAttribute="trailing" constant="14" id="PTS-al-ixd"/>
                     <constraint firstItem="zFl-HT-Vyl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SQI-lk-gdh"/>
                     <constraint firstItem="zFl-HT-Vyl" firstAttribute="leading" secondItem="QJL-VL-TNU" secondAttribute="trailing" constant="8" symbolic="YES" id="Wfu-hP-RBf"/>
-                    <constraint firstItem="nhP-HA-DC0" firstAttribute="top" secondItem="zFl-HT-Vyl" secondAttribute="bottom" constant="12" id="ete-jE-uAc"/>
                     <constraint firstAttribute="bottom" secondItem="QJL-VL-TNU" secondAttribute="bottom" constant="10" id="hO4-58-JAi"/>
                     <constraint firstItem="QJL-VL-TNU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="kpK-gV-T48"/>
+                    <constraint firstItem="nhP-HA-DC0" firstAttribute="top" secondItem="zFl-HT-Vyl" secondAttribute="bottom" constant="8" symbolic="YES" id="mk0-8a-Kfe"/>
                     <constraint firstItem="nhP-HA-DC0" firstAttribute="leading" secondItem="QJL-VL-TNU" secondAttribute="trailing" constant="8" symbolic="YES" id="n2m-XL-m4s"/>
                     <constraint firstItem="QJL-VL-TNU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vg0-gK-beO"/>
                 </constraints>

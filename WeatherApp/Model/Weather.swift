@@ -15,17 +15,14 @@ struct Weather: Decodable {
     let cod: Int?
 }
 
-// MARK: - Clouds
 struct Clouds: Decodable {
     let all: Int?
 }
 
-// MARK: - Coord
 struct Coord: Decodable {
     let lon, lat: Double?
 }
 
-// MARK: - Main
 struct Main: Decodable {
     let temp, feelsLike, tempMin, tempMax: Double?
     let pressure, humidity, seaLevel, grndLevel: Int?
@@ -41,7 +38,6 @@ struct Main: Decodable {
     }
 }
 
-// MARK: - Rain
 struct Rain: Decodable {
     let the1H: Double?
 
@@ -50,20 +46,17 @@ struct Rain: Decodable {
     }
 }
 
-// MARK: - Sys
 struct Sys: Decodable {
     let type, id: Int?
     let country: String?
     let sunrise, sunset: Int?
 }
 
-// MARK: - WeatherElement
 struct WeatherElement: Decodable {
     let id: Int?
     let main, description, icon: String?
 }
 
-// MARK: - Wind
 struct Wind: Decodable {
     let speed: Double?
     let deg: Int?

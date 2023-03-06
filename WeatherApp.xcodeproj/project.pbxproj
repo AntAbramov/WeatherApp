@@ -93,6 +93,24 @@
 			path = ForecastCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		3A4C6F5529B62C2E00B0232B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3AEFA4A5299958BD00C3BBE7 /* NotificationKeys.swift */,
+				3AA7F7DC29A0269C00BD0299 /* UserDefaultsKeys.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		3A4C6F5629B62C5C00B0232B /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3A767DD9298FD90000693D04 /* SceneDelegate.swift */,
+				3A767DD7298FD90000693D04 /* AppDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		3A6324252992581900FEC599 /* MainTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,10 +167,8 @@
 		3A767DD6298FD90000693D04 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				3A767DD7298FD90000693D04 /* AppDelegate.swift */,
-				3A767DD9298FD90000693D04 /* SceneDelegate.swift */,
-				3AEFA4A5299958BD00C3BBE7 /* NotificationKeys.swift */,
-				3AA7F7DC29A0269C00BD0299 /* UserDefaultsKeys.swift */,
+				3A4C6F5629B62C5C00B0232B /* Delegate */,
+				3A4C6F5529B62C2E00B0232B /* Helper */,
 				3AEFA49B2998D88D00C3BBE7 /* Network */,
 				3A63244D2992B80600FEC599 /* Model */,
 				3AEFA49529980FCF00C3BBE7 /* ViewController */,

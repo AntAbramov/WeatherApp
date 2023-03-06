@@ -16,10 +16,11 @@ enum UrlType {
     }
     
     var apiKey: String {
-        return "apiKey"
+        return "1a11459ab1838a8195f4dd9596882b12"
     }
     
-    func configureUrl(with coordinate: Coordinate) -> URL? {
+    func configureUrl(with coordinate: Coordinate?) -> URL? {
+        guard let coordinate = coordinate else { return nil }
         let lat = "lat=\(coordinate.lat)"
         let lon = "&lon=\(coordinate.lon)"
         let appid = "&appid="

@@ -2,12 +2,11 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var model: Weather? {
+    var forecastModel: Forecast? {
         didSet {
             
         }
     }
-    
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
@@ -21,28 +20,6 @@ class DetailViewController: UIViewController {
         configureDailyForecastTableView()
         configureHourlyForecastCollectionView()
         cunfigureNavigationController()
-    }
-    
-    // MARK: - Configuration
-    private func configureHourlyForecastCollectionView() {
-        hourlyForecastCollectionView.delegate = self
-        hourlyForecastCollectionView.dataSource = self
-        hourlyForecastCollectionView.register(ForecastCollectionViewCell.nib(),
-                                              forCellWithReuseIdentifier: ForecastCollectionViewCell.identifire)
-        hourlyForecastCollectionView.showsHorizontalScrollIndicator = false
-    }
-    
-    private func configureDailyForecastTableView() {
-        dailyForecastTableView.delegate = self
-        dailyForecastTableView.dataSource = self
-        dailyForecastTableView.register(ForecastTableViewCell.nib(), forCellReuseIdentifier: ForecastTableViewCell.identifire)
-        dailyForecastTableView.sectionHeaderTopPadding = 0
-        dailyForecastTableView.showsVerticalScrollIndicator = false
-    }
-    
-    private func cunfigureNavigationController() {
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
 }
@@ -93,5 +70,29 @@ extension DetailViewController: UITableViewDataSource {
         cell.configure()
         cell.selectionStyle = .none
         return cell
+    }
+}
+
+// MARK: - DetailViewController Configuration
+extension DetailViewController {
+    private func configureHourlyForecastCollectionView() {
+        hourlyForecastCollectionView.delegate = self
+        hourlyForecastCollectionView.dataSource = self
+        hourlyForecastCollectionView.register(ForecastCollectionViewCell.nib(),
+                                              forCellWithReuseIdentifier: ForecastCollectionViewCell.identifire)
+        hourlyForecastCollectionView.showsHorizontalScrollIndicator = false
+    }
+    
+    private func configureDailyForecastTableView() {
+        dailyForecastTableView.delegate = self
+        dailyForecastTableView.dataSource = self
+        dailyForecastTableView.register(ForecastTableViewCell.nib(), forCellReuseIdentifier: ForecastTableViewCell.identifire)
+        dailyForecastTableView.sectionHeaderTopPadding = 0
+        dailyForecastTableView.showsVerticalScrollIndicator = false
+    }
+    
+    private func cunfigureNavigationController() {
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }

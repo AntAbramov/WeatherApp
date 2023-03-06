@@ -6,7 +6,6 @@ struct Forecast: Decodable {
     let city: CityForecast?
 }
 
-// MARK: - City
 struct CityForecast: Decodable {
     let id: Int?
     let name: String?
@@ -15,12 +14,10 @@ struct CityForecast: Decodable {
     let population, timezone, sunrise, sunset: Int?
 }
 
-// MARK: - Coord
 struct CoordForecast: Decodable {
     let lat, lon: Double?
 }
 
-// MARK: - List
 struct ListForecast: Decodable {
     let dt: Int?
     let main: MainForecast?
@@ -39,12 +36,10 @@ struct ListForecast: Decodable {
     }
 }
 
-// MARK: - Clouds
 struct CloudsForecast: Decodable {
     let all: Int?
 }
 
-// MARK: - Main
 struct MainForecast: Decodable {
     let temp, feelsLike, tempMin, tempMax: Double?
     let pressure, seaLevel, grndLevel, humidity: Int?
@@ -63,7 +58,6 @@ struct MainForecast: Decodable {
     }
 }
 
-// MARK: - Rain
 struct RainForecast: Decodable {
     let the3H: Double?
 
@@ -72,18 +66,15 @@ struct RainForecast: Decodable {
     }
 }
 
-// MARK: - Sys
 struct SysForecast: Decodable {
     let pod: String?
 }
 
-// MARK: - Weather
 struct WeatherForecast: Decodable {
     let id: Int?
     let main, description, icon: String?
 }
 
-// MARK: - Wind
 struct WindForecast: Decodable {
     let speed: Double?
     let deg: Int?

@@ -7,7 +7,8 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    func configureCell(with model: Weather) {
+    func configureCell(with model: Weather?) {
+        guard let model = model else { return }
         
         if let iconString = model.weather?.first?.icon {
             if let image = UIImage(named: iconString) {
@@ -22,7 +23,7 @@ class MainTableViewCell: UITableViewCell {
         self.cityNameLabel.text = model.name
         
         if let temp = model.main?.temp {
-            self.temperatureLabel.text = "\(Int(temp - 273))" + "℃"
+            self.temperatureLabel.text = "\(Int(temp))℃"
         }
         
     }
