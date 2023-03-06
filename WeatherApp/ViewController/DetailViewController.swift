@@ -4,7 +4,7 @@ class DetailViewController: UIViewController {
     
     var forecastModel: Forecast? {
         didSet {
-            
+            print(forecastModel?.city?.name)
         }
     }
     
@@ -20,6 +20,8 @@ class DetailViewController: UIViewController {
         configureDailyForecastTableView()
         configureHourlyForecastCollectionView()
         cunfigureNavigationController()
+        
+        cityNameLabel.text = forecastModel?.city?.name
     }
     
 }
