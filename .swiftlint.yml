@@ -4,6 +4,8 @@ disabled_rules:
   - line_length
   - mark
   - identifier_name
+  - cyclomatic_complexity
+  - colon
 
 excluded:
   - Carthage
