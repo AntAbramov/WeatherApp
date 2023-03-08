@@ -1,51 +1,37 @@
 import UIKit
 
-struct HourlyForecastInfo {
-    let time: String
-    let icon: String
-    let temp: String
-}
-
 class DetailViewController: UIViewController {
-    
     var weatherModel: Weather?
     var forecastModel: Forecast? {
         didSet {
             fillHourlyForecastInfoDataSource(with: forecastModel)
+            fillFiveDaysForecastTableViewDataSource(with: forecastModel)
         }
     }
     
+    //MARK: Models for cells
     private var hourlyForecastInfoDataSource = [HourlyForecastInfo?]()
+    private var fiveDaysForecastInfoDataSource = [FiveDaysForecastInfo?]()
         
+    //MARK: UI
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
     @IBOutlet weak var dailyForecastTableView: UITableView!
     @IBOutlet weak var hourlyForecastCollectionView: UICollectionView!
     
+    let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureDailyForecastTableView()
         configureHourlyForecastCollectionView()
         cunfigureNavigationController()
-        
-        cityNameLabel.text = weatherModel?.name
-        
-        if let currentTemp = weatherModel?.main?.temp {
-            currentTemperatureLabel.text = "\(Int(currentTemp))℃"
-        }
-        
-        if let description = weatherModel?.weather?.first?.description {
-            self.descriptionLabel.text = description
-        }
-        
     }
     
+    // MARK: - Relevant Model for CollectionViewCells
     private func fillHourlyForecastInfoDataSource(with model: Forecast?) {
         guard let list = model?.list else { return }
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         list.forEach { element in
@@ -71,11 +57,54 @@ class DetailViewController: UIViewController {
             let hourlyForecastInfoElement = HourlyForecastInfo(time: timeHour, icon: icon, temp: temp)
             self.hourlyForecastInfoDataSource.append(hourlyForecastInfoElement)
         }
+    }
+    
+    // MARK: - Relevant model for TableViewCell
+    private func fillFiveDaysForecastTableViewDataSource(with model: Forecast?) {
+        guard let list = model?.list else { return }
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let weekDict = [1:"Mon", 2:"Tue", 3:"Wed", 4:"Thu", 5:"Fri", 6:"Set", 7:"Sun"]
+    
+        var dayTemp = String()
+        var nightTemp = String()
+        var iconName = String()
+        var weekDay = String()
         
+        var startDay = Int()
+        guard let dateStr = model?.list?.first?.dtTxt else { return }
+        if let date = dateFormatter.date(from: dateStr) {
+            startDay = Calendar.current.component(.weekday, from: date)
+        }
         
-        
-        
-        
+        list.forEach { element in
+            guard let dateStr = element.dtTxt else { return }
+            guard let date = dateFormatter.date(from: dateStr) else { return }
+            let currentWeekDay = Calendar.current.component(.weekday, from: date)
+            guard currentWeekDay != startDay else { return }
+            
+            let dayTime = Calendar.current.component(.hour, from: date)
+            switch dayTime {
+            case 0:
+                guard let currentNightTemp = element.main?.temp else { return }
+                nightTemp = "Night: \(Int(currentNightTemp))℃"
+                
+                let day = Calendar.current.component(.weekday, from: date)
+                if let weekDayStr = weekDict[day] {
+                    weekDay = weekDayStr
+                }
+                fallthrough
+            case 12:
+                guard let currentDayTemp = element.main?.temp else { return }
+                dayTemp = "Day: \(Int(currentDayTemp))℃"
+                if let currentIcon = element.weather?.first?.icon {
+                    iconName = currentIcon
+                }
+            case 21:
+                let currentModel = FiveDaysForecastInfo(dayTemp: dayTemp, nightTemp: nightTemp, iconName: iconName, weekDay: weekDay)
+                self.fiveDaysForecastInfoDataSource.append(currentModel)
+            default: break
+            }
+        }
     }
     
 }
@@ -115,28 +144,19 @@ extension DetailViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension DetailViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int { 5 }
-    
+    func numberOfSections(in tableView: UITableView) -> Int { fiveDaysForecastInfoDataSource.count }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = dailyForecastTableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.identifire, for: indexPath) as? ForecastTableViewCell else { return UITableViewCell() }
-        cell.configure()
+        cell.configure(with: fiveDaysForecastInfoDataSource[indexPath.section])
         cell.selectionStyle = .none
         return cell
     }
 }
-
-
-
-
-
-
-
-
-
 
 // MARK: - DetailViewController Configuration
 extension DetailViewController {

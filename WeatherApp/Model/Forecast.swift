@@ -80,3 +80,18 @@ struct WindForecast: Decodable {
     let deg: Int?
     let gust: Double?
 }
+
+
+// MARK: - Models for cells
+struct HourlyForecastInfo {
+    let time: String
+    let icon: String
+    let temp: String
+}
+
+struct FiveDaysForecastInfo {
+    let dayTemp: String
+    let nightTemp: String
+    var iconName: String
+    var weekDay: String
+}

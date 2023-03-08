@@ -10,48 +10,75 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="ForecastTableViewCell" customModule="WeatherApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="395" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="395" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ry5-Ea-mar">
-                        <rect key="frame" x="16" y="25" width="46" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ry5-Ea-mar">
+                        <rect key="frame" x="13" y="6" width="40" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Ufy-3e-TfV"/>
+                            <constraint firstAttribute="height" constant="60" id="gjB-2G-Ivx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day: 10℃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rId-SE-lP7">
+                        <rect key="frame" x="129" y="24" width="76" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="01d" translatesAutoresizingMaskIntoConstraints="NO" id="yie-w9-nAg">
-                        <rect key="frame" x="70" y="10" width="50" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <progressView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="749" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="9XU-z9-Gf8">
+                        <rect key="frame" x="211" y="33" width="81" height="4"/>
+                    </progressView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night: 0℃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMM-R0-0wL">
+                        <rect key="frame" x="298" y="24" width="81" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="09n" translatesAutoresizingMaskIntoConstraints="NO" id="yie-w9-nAg">
+                        <rect key="frame" x="53" y="5" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="HeQ-EZ-6xc"/>
+                            <constraint firstAttribute="height" constant="60" id="U8X-qV-mFz"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rId-SE-lP7">
-                        <rect key="frame" x="154" y="25" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMM-R0-0wL">
-                        <rect key="frame" x="262" y="25" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Ry5-Ea-mar" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="MzS-dp-wDb"/>
-                    <constraint firstItem="Ry5-Ea-mar" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="R8y-Uc-Qdi"/>
-                    <constraint firstAttribute="bottom" secondItem="Ry5-Ea-mar" secondAttribute="bottom" constant="25" id="SIp-Gt-ZKG"/>
+                    <constraint firstAttribute="bottom" secondItem="rId-SE-lP7" secondAttribute="bottom" constant="25" id="2NR-bi-S3c"/>
+                    <constraint firstItem="rId-SE-lP7" firstAttribute="leading" secondItem="yie-w9-nAg" secondAttribute="trailing" constant="16" id="2oL-bG-lWa"/>
+                    <constraint firstItem="RMM-R0-0wL" firstAttribute="leading" secondItem="9XU-z9-Gf8" secondAttribute="trailing" constant="6" id="3rS-KQ-1it"/>
+                    <constraint firstItem="yie-w9-nAg" firstAttribute="leading" secondItem="Ry5-Ea-mar" secondAttribute="trailing" id="4DI-oD-wqw"/>
+                    <constraint firstAttribute="bottom" secondItem="Ry5-Ea-mar" secondAttribute="bottom" constant="6" id="5at-NP-UuU"/>
+                    <constraint firstItem="RMM-R0-0wL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="9Ek-9c-DqM"/>
+                    <constraint firstItem="9XU-z9-Gf8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="33" id="A2t-AH-3vB"/>
+                    <constraint firstItem="9XU-z9-Gf8" firstAttribute="leading" secondItem="rId-SE-lP7" secondAttribute="trailing" constant="6" id="G3t-aW-cxL"/>
+                    <constraint firstAttribute="bottom" secondItem="9XU-z9-Gf8" secondAttribute="bottom" constant="33" id="IKI-pn-CTh"/>
+                    <constraint firstItem="Ry5-Ea-mar" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="MzS-dp-wDb"/>
+                    <constraint firstAttribute="trailing" secondItem="RMM-R0-0wL" secondAttribute="trailing" constant="16" id="PYc-gT-SIg"/>
+                    <constraint firstAttribute="bottom" secondItem="RMM-R0-0wL" secondAttribute="bottom" constant="25" id="XWU-sj-tVf"/>
+                    <constraint firstItem="rId-SE-lP7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="dPO-1X-TFu"/>
+                    <constraint firstItem="Ry5-Ea-mar" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="hru-BX-Vw5"/>
+                    <constraint firstItem="yie-w9-nAg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="qqD-1w-ckv"/>
+                    <constraint firstAttribute="bottom" secondItem="yie-w9-nAg" secondAttribute="bottom" constant="5" id="vhK-o0-eyo"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="117.55725190839694" y="29.577464788732396"/>
+            <connections>
+                <outlet property="dayTempLabel" destination="rId-SE-lP7" id="SV4-go-z6E"/>
+                <outlet property="iconImageView" destination="yie-w9-nAg" id="1kh-U0-Cgt"/>
+                <outlet property="nightTempLabel" destination="RMM-R0-0wL" id="EMl-Un-B1N"/>
+                <outlet property="weekDayLabel" destination="Ry5-Ea-mar" id="Ych-km-pA9"/>
+            </connections>
+            <point key="canvasLocation" x="176.80000000000001" y="29.55665024630542"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="01d" width="50" height="50"/>
+        <image name="09n" width="50" height="50"/>
     </resources>
 </document>
