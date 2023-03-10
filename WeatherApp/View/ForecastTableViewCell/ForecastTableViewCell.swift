@@ -7,7 +7,7 @@ class ForecastTableViewCell: UITableViewCell {
     @IBOutlet weak var dayTempLabel: UILabel!
     @IBOutlet weak var nightTempLabel: UILabel!
     
-    func configure(with model: FiveDaysForecastInfo?) {
+    func configure(with model: DailyForecast?) {
         self.backgroundColor = .tertiarySystemBackground
         self.layer.cornerRadius = 10
         

@@ -1,17 +1,20 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    var weatherModel: Weather?
+    
+    var currentIndex: Int = 0
+    var totalPageCount: Int = 0
+    
     var forecastModel: Forecast? {
         didSet {
-            fillHourlyForecastInfoDataSource(with: forecastModel)
-            fillFiveDaysForecastTableViewDataSource(with: forecastModel)
+            fillHourlyForecastData(with: forecastModel)
+            fillDailyForecastData(with: forecastModel)
         }
     }
     
-    //MARK: Models for cells
-    private var hourlyForecastInfoDataSource = [HourlyForecastInfo?]()
-    private var fiveDaysForecastInfoDataSource = [FiveDaysForecastInfo?]()
+    //MARK: Models for Cells
+    private var hourlyForecastData = [HourlyForecast?]()
+    private var dailyForecastData = [DailyForecast?]()
         
     //MARK: UI
     @IBOutlet weak var cityNameLabel: UILabel!
@@ -27,10 +30,17 @@ class DetailViewController: UIViewController {
         configureDailyForecastTableView()
         configureHourlyForecastCollectionView()
         cunfigureNavigationController()
+        setMainLabelsText(with: forecastModel)
+    }
+    
+    private func setMainLabelsText(with model: Forecast?) {
+        self.cityNameLabel.text = model?.city?.name
+        self.currentTemperatureLabel.text = "\(Int())℃"
+        self.descriptionLabel.text = model?.list?.first?.weather?.first?.description
     }
     
     // MARK: - Relevant Model for CollectionViewCells
-    private func fillHourlyForecastInfoDataSource(with model: Forecast?) {
+    private func fillHourlyForecastData(with model: Forecast?) {
         guard let list = model?.list else { return }
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
@@ -54,16 +64,16 @@ class DetailViewController: UIViewController {
                 icon = imageName
             }
             
-            let hourlyForecastInfoElement = HourlyForecastInfo(time: timeHour, icon: icon, temp: temp)
-            self.hourlyForecastInfoDataSource.append(hourlyForecastInfoElement)
+            let hourlyForecastInfoElement = HourlyForecast(time: timeHour, icon: icon, temp: temp)
+            self.hourlyForecastData.append(hourlyForecastInfoElement)
         }
     }
     
     // MARK: - Relevant model for TableViewCell
-    private func fillFiveDaysForecastTableViewDataSource(with model: Forecast?) {
+    private func fillDailyForecastData(with model: Forecast?) {
         guard let list = model?.list else { return }
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let weekDict = [1:"Mon", 2:"Tue", 3:"Wed", 4:"Thu", 5:"Fri", 6:"Set", 7:"Sun"]
+        let weekDict = [1 : "Mon", 2 : "Tue", 3 : "Wed", 4 : "Thu", 5 : "Fri", 6 : "Set", 7 : "Sun"]
     
         var dayTemp = String()
         var nightTemp = String()
@@ -92,7 +102,6 @@ class DetailViewController: UIViewController {
                 if let weekDayStr = weekDict[day] {
                     weekDay = weekDayStr
                 }
-                fallthrough
             case 12:
                 guard let currentDayTemp = element.main?.temp else { return }
                 dayTemp = "Day: \(Int(currentDayTemp))℃"
@@ -100,8 +109,8 @@ class DetailViewController: UIViewController {
                     iconName = currentIcon
                 }
             case 21:
-                let currentModel = FiveDaysForecastInfo(dayTemp: dayTemp, nightTemp: nightTemp, iconName: iconName, weekDay: weekDay)
-                self.fiveDaysForecastInfoDataSource.append(currentModel)
+                let currentModel = DailyForecast(dayTemp: dayTemp, nightTemp: nightTemp, iconName: iconName, weekDay: weekDay)
+                self.dailyForecastData.append(currentModel)
             default: break
             }
         }
@@ -119,7 +128,7 @@ extension DetailViewController: UICollectionViewDataSource {
         guard let cell = hourlyForecastCollectionView.dequeueReusableCell(withReuseIdentifier: ForecastCollectionViewCell.identifire, for: indexPath) as? ForecastCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: hourlyForecastInfoDataSource[indexPath.row])
+        cell.configure(with: hourlyForecastData[indexPath.row])
         return cell
     }
     
@@ -144,7 +153,7 @@ extension DetailViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 extension DetailViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int { fiveDaysForecastInfoDataSource.count }
+    func numberOfSections(in tableView: UITableView) -> Int { dailyForecastData.count }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
@@ -152,7 +161,7 @@ extension DetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = dailyForecastTableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.identifire, for: indexPath) as? ForecastTableViewCell else { return UITableViewCell() }
-        cell.configure(with: fiveDaysForecastInfoDataSource[indexPath.section])
+        cell.configure(with: dailyForecastData[indexPath.section])
         cell.selectionStyle = .none
         return cell
     }
@@ -178,6 +187,7 @@ extension DetailViewController {
     
     private func cunfigureNavigationController() {
         navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = false
+        
     }
+    
 }

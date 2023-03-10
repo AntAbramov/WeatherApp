@@ -1,6 +1,6 @@
 // MARK: - Weather
 struct Weather: Decodable {
-    let coord: Coord?
+    let coord: Coordinate
     let weather: [WeatherElement]?
     let base: String?
     let main: Main?
@@ -15,12 +15,13 @@ struct Weather: Decodable {
     let cod: Int?
 }
 
-struct Clouds: Decodable {
-    let all: Int?
+// MARK: - Coordinate
+struct Coordinate: Codable {
+    let lon, lat: Double
 }
 
-struct Coord: Decodable {
-    let lon, lat: Double?
+struct Clouds: Decodable {
+    let all: Int?
 }
 
 struct Main: Decodable {

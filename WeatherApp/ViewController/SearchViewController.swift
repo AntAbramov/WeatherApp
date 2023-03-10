@@ -1,7 +1,7 @@
 import UIKit
 import MapKit
 
-class ResultViewController: UIViewController {
+class SearchViewController: UIViewController {
     let tableView = UITableView()
     
     private var searchCompleter: MKLocalSearchCompleter = MKLocalSearchCompleter()
@@ -64,7 +64,7 @@ class ResultViewController: UIViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension ResultViewController: UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         searchResults.count
     }
@@ -79,14 +79,14 @@ extension ResultViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension ResultViewController: UITableViewDelegate {
+extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         cityDidSelected(searchResults[indexPath.row])
     }
 }
 
 //MARK: - SearchCompleterDelegate
-extension ResultViewController: MKLocalSearchCompleterDelegate {
+extension SearchViewController: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         completer.resultTypes = .address
         searchResults = completer.results

@@ -1,12 +1,12 @@
 import UIKit
 import MapKit
 
-final class MainViewController: UIViewController {
+class MainViewController: UIViewController {
     
-    // MARK: UI
+    //MARK: UI
     private let mainTableView = UITableView(frame: CGRect(), style: .insetGrouped)
-    private let resultVC = ResultViewController()
-    private let searchController = UISearchController(searchResultsController: ResultViewController())
+    private let resultVC = SearchViewController()
+    private let searchController = UISearchController(searchResultsController: SearchViewController())
     private let editButton = UIBarButtonItem()
     
     //MARK: Services
@@ -16,9 +16,9 @@ final class MainViewController: UIViewController {
     private var weatherDataSourceIsAvailable = false
     private var forecastDataSourceIsAvailable = false
     
-    //MARK: DataSource
-    private var forecastDataSource: [Forecast?]? = [Forecast]()
-    private var weatherDataSource: [Weather?]? = [Weather?]() {
+    //MARK: Data
+    private var forecastDataSource = [Forecast]()
+    private var weatherDataSource: [Weather] = [Weather]() {
         didSet {
             DispatchQueue.main.async {
                 self.mainTableView.reloadData()
@@ -26,7 +26,7 @@ final class MainViewController: UIViewController {
         }
     }
     
-    private var cityCoordinates: [Coordinate?]? = [Coordinate?]() {
+    private var cityCoordinates: [Coordinate] = [Coordinate]() {
         didSet {
             UserDefaults.standard.set(try? PropertyListEncoder().encode(self.cityCoordinates),
                                       forKey: UserDefaultsKeys.cities)
@@ -36,7 +36,6 @@ final class MainViewController: UIViewController {
         }
     }
     
-    //MARK: VC Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCityCoordinates()
@@ -68,7 +67,7 @@ final class MainViewController: UIViewController {
         var localWeatherArray = [Weather]()
         let dispatchGroup = DispatchGroup()
         
-        cityCoordinates?.forEach { coordinate in
+        cityCoordinates.forEach { coordinate in
             guard let weatherUrl = UrlType.weather.configureUrl(with: coordinate) else { return }
             dispatchGroup.enter()
             networkService.obtainWeather(url: weatherUrl) { (result) in
@@ -93,7 +92,7 @@ final class MainViewController: UIViewController {
         var localForecastArray = [Forecast]()
         let dispatchGroup = DispatchGroup()
         
-        cityCoordinates?.forEach { coordinate in
+        cityCoordinates.forEach { coordinate in
             guard let forecastrUrl = UrlType.forecast.configureUrl(with: coordinate) else { return }
             dispatchGroup.enter()
             networkService.obtainForecast(url: forecastrUrl) { (result) in
@@ -113,14 +112,14 @@ final class MainViewController: UIViewController {
         }
     }
     
-    //MARK: Target fetching
+    //MARK: Target obtaining Weather
     private func obtainWeather(by coordinate: Coordinate) {
         if let url = UrlType.weather.configureUrl(with: coordinate) {
             networkService.obtainWeather(url: url) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let weather):
-                    self.weatherDataSource?.append(weather)
+                    self.weatherDataSource.append(weather)
                 case .failure(let error):
                     print(error)
                 }
@@ -128,13 +127,14 @@ final class MainViewController: UIViewController {
         }
     }
     
+    //MARK: Target obtaining Forecast
     private func obtainForecast(by coordinate: Coordinate) {
         if let url = UrlType.forecast.configureUrl(with: coordinate) {
             networkService.obtainForecast(url: url) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let forecast):
-                    self.forecastDataSource?.append(forecast)
+                    self.forecastDataSource.append(forecast)
                 case .failure(let error):
                     print(error)
                 }
@@ -149,8 +149,8 @@ final class MainViewController: UIViewController {
     
     @objc private func selectedCity(notification: NSNotification) {
         guard let cityCoordinate = notification.object as? CLLocationCoordinate2D else { return }
-        let coordinate = Coordinate(lat: cityCoordinate.latitude, lon: cityCoordinate.longitude)
-        cityCoordinates?.append(coordinate)
+        let coordinate = Coordinate(lon: cityCoordinate.longitude, lat: cityCoordinate.latitude)
+        cityCoordinates.append(coordinate)
         obtainWeather(by: coordinate)
         obtainForecast(by: coordinate)
     }
@@ -162,11 +162,9 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if weatherDataSourceIsAvailable {
-            guard let elementsCount = weatherDataSource?.count else { return 0 }
-            return elementsCount
+            return weatherDataSource.count
         } else {
-            guard let coordinatesCount = cityCoordinates?.count else { return 0 }
-            return coordinatesCount
+            return cityCoordinates.count
         }
     }
     
@@ -174,29 +172,33 @@ extension MainViewController: UITableViewDataSource {
         guard let cell = mainTableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifire, for: indexPath)
                 as? MainTableViewCell else { return UITableViewCell() }
         if weatherDataSourceIsAvailable {
-            cell.configureCell(with: weatherDataSource?[indexPath.row])
+            cell.configureCell(with: weatherDataSource[indexPath.row])
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            weatherDataSource?.remove(at: indexPath.row)
-            cityCoordinates?.remove(at: indexPath.row)
-            forecastDataSource?.remove(at: indexPath.row)
+        if editingStyle == .delete && forecastDataSourceIsAvailable && weatherDataSourceIsAvailable {
+            weatherDataSource.remove(at: indexPath.row)
+            cityCoordinates.remove(at: indexPath.row)
+            forecastDataSource.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let removedWeatherElement = weatherDataSource?.remove(at: sourceIndexPath.row)
-        weatherDataSource?.insert(removedWeatherElement, at: destinationIndexPath.row)
+        let removedCoordinateElement = cityCoordinates.remove(at: sourceIndexPath.row)
+        cityCoordinates.insert(removedCoordinateElement, at: destinationIndexPath.row)
         
-        let removedCoordinateElement = cityCoordinates?.remove(at: sourceIndexPath.row)
-        cityCoordinates?.insert(removedCoordinateElement, at: destinationIndexPath.row)
+        if weatherDataSourceIsAvailable {
+            let removedWeatherElement = weatherDataSource.remove(at: sourceIndexPath.row)
+            weatherDataSource.insert(removedWeatherElement, at: destinationIndexPath.row)
+        }
         
-        let removedForecastElement = forecastDataSource?.remove(at: sourceIndexPath.row)
-        forecastDataSource?.insert(removedForecastElement, at: destinationIndexPath.row)
+        if forecastDataSourceIsAvailable {
+            let removedForecastElement = forecastDataSource.remove(at: sourceIndexPath.row)
+            forecastDataSource.insert(removedForecastElement, at: destinationIndexPath.row)
+        }
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -205,17 +207,14 @@ extension MainViewController: UITableViewDataSource {
     
 }
 
-//MARK: - UITableV§iewDelegate
+//MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if forecastDataSourceIsAvailable && weatherDataSourceIsAvailable {
-            if let currentForecastModel = forecastDataSource?[indexPath.row], let currentWeatherModel = weatherDataSource?[indexPath.row] {
-                let detailVC = DetailViewController()
-                detailVC.forecastModel = currentForecastModel
-                detailVC.weatherModel = currentWeatherModel
-                navigationController?.pushViewController(detailVC, animated: true)
-            }
+        if forecastDataSourceIsAvailable {
+            let pageVC = PageViewController()
+            pageVC.forecastDataSource = forecastDataSource
+            self.present(pageVC, animated: true)
         }
     }
     
@@ -229,7 +228,7 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        let destinationVC = searchController.searchResultsController as? ResultViewController
+        let destinationVC = searchController.searchResultsController as? SearchViewController
         destinationVC?.searchText = text
     }
 }
@@ -276,9 +275,9 @@ extension MainViewController {
     //MARK: Constraints
     private func setMainTableViewConstraints() {
         mainTableView.translatesAutoresizingMaskIntoConstraints = false
-        mainTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        mainTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-        mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        mainTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        mainTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         mainTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 }

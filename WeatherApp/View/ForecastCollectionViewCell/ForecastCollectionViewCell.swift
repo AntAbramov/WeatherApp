@@ -14,7 +14,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var backView: UIView!
     
-    func configure(with model: HourlyForecastInfo?) {
+    func configure(with model: HourlyForecast?) {
         self.backView.backgroundColor = .tertiarySystemBackground
         self.backView.layer.cornerRadius = 10
         
