@@ -2,7 +2,7 @@ import UIKit
 
 class PageViewController: UIPageViewController {
     
-    private var detailViewControllerArray = [DetailViewController]()
+    private var detailViewControllerArray = [CurrentViewController]()
     var forecastDataSource = [Forecast?]()
     var firstIndex = 0
 
@@ -15,12 +15,16 @@ class PageViewController: UIPageViewController {
     
     private func createAllDetailViewControllers() {
         var count = 0
-        for forecast in forecastDataSource {
-            let detailVC = DetailViewController()
-            detailVC.forecastModel = forecast
-            detailVC.currentIndex = count
-            detailVC.totalPageCount = forecastDataSource.count
-            detailViewControllerArray.append(detailVC)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        forecastDataSource.forEach { forecast in
+            guard let vc = storyboard.instantiateViewController(withIdentifier: "CurrentViewController") as? CurrentViewController else {
+                return
+            }
+            vc.totalPageCount = forecastDataSource.count
+            vc.currentIndex = count
+            vc.forecastModel = forecast
+            detailViewControllerArray.append(vc)
             count += 1
         }
     }
@@ -36,7 +40,7 @@ extension PageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        guard let current = viewController as? DetailViewController,
+        guard let current = viewController as? CurrentViewController,
             let VCIndex = detailViewControllerArray.firstIndex(of: current) else {
                 return nil
         }
@@ -51,7 +55,7 @@ extension PageViewController: UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let current = viewController as? DetailViewController,
+        guard let current = viewController as? CurrentViewController,
             let viewControllerIndex = detailViewControllerArray.firstIndex(of: current) else {
                 return nil
         }
@@ -65,5 +69,4 @@ extension PageViewController: UIPageViewControllerDataSource {
         }
         return detailViewControllerArray[nextIndex]
     }
-    
 }

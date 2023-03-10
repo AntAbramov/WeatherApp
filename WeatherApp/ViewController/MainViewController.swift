@@ -212,9 +212,14 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if forecastDataSourceIsAvailable {
-            let pageVC = PageViewController()
-            pageVC.forecastDataSource = forecastDataSource
-            self.present(pageVC, animated: true)
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(withIdentifier: "PageViewController") as? PageViewController,
+                indexPath.section == 0 else {
+                return
+            }
+            vc.forecastDataSource = forecastDataSource
+            vc.firstIndex = indexPath.row
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
