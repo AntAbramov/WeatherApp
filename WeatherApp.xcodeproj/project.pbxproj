@@ -194,8 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				3A767DDD298FD90000693D04 /* Main.storyboard */,
-				3A6324752994F89800FEC599 /* ResultTableViewCell */,
 				3A6324252992581900FEC599 /* MainTableViewCell */,
+				3A6324752994F89800FEC599 /* ResultTableViewCell */,
 				3A22F87C29A0E0010030FE25 /* ForecastCollectionViewCell */,
 				3A004B1D29A124210082C118 /* ForecastTableViewCell */,
 			);

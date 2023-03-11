@@ -16,7 +16,7 @@ enum UrlType {
     }
     
     var apiKey: String {
-        return "apiKey"
+        return "ApiKey"
     }
     
     func configureUrl(with coordinate: Coordinate?) -> URL? {

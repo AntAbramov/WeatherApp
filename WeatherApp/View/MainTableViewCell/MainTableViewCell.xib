@@ -24,19 +24,19 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSQ-8l-8hO">
-                        <rect key="frame" x="268" y="10" width="38" height="41"/>
+                        <rect key="frame" x="268.33333333333331" y="10" width="37.666666666666686" height="41"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="34"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFl-HT-Vyl">
-                        <rect key="frame" x="84" y="10" width="36" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFl-HT-Vyl">
+                        <rect key="frame" x="84" y="10" width="155" height="24"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhP-HA-DC0">
-                        <rect key="frame" x="84" y="42" width="24" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhP-HA-DC0">
+                        <rect key="frame" x="84" y="42" width="155" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -46,9 +46,11 @@
                     <constraint firstItem="dSQ-8l-8hO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="NVP-8z-g5q"/>
                     <constraint firstAttribute="trailing" secondItem="dSQ-8l-8hO" secondAttribute="trailing" constant="14" id="PTS-al-ixd"/>
                     <constraint firstItem="zFl-HT-Vyl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SQI-lk-gdh"/>
+                    <constraint firstAttribute="bottom" secondItem="nhP-HA-DC0" secondAttribute="bottom" constant="24" id="VJ0-Hl-CNy"/>
                     <constraint firstItem="zFl-HT-Vyl" firstAttribute="leading" secondItem="QJL-VL-TNU" secondAttribute="trailing" constant="8" symbolic="YES" id="Wfu-hP-RBf"/>
                     <constraint firstAttribute="bottom" secondItem="QJL-VL-TNU" secondAttribute="bottom" constant="10" id="hO4-58-JAi"/>
                     <constraint firstItem="QJL-VL-TNU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="kpK-gV-T48"/>
+                    <constraint firstAttribute="bottom" secondItem="dSQ-8l-8hO" secondAttribute="bottom" constant="29" id="loB-WK-3P9"/>
                     <constraint firstItem="nhP-HA-DC0" firstAttribute="top" secondItem="zFl-HT-Vyl" secondAttribute="bottom" constant="8" symbolic="YES" id="mk0-8a-Kfe"/>
                     <constraint firstItem="nhP-HA-DC0" firstAttribute="leading" secondItem="QJL-VL-TNU" secondAttribute="trailing" constant="8" symbolic="YES" id="n2m-XL-m4s"/>
                     <constraint firstItem="QJL-VL-TNU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vg0-gK-beO"/>

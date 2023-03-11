@@ -160,7 +160,9 @@ class MainViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         if weatherDataSourceIsAvailable {
             return weatherDataSource.count
         } else {
@@ -172,32 +174,32 @@ extension MainViewController: UITableViewDataSource {
         guard let cell = mainTableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifire, for: indexPath)
                 as? MainTableViewCell else { return UITableViewCell() }
         if weatherDataSourceIsAvailable {
-            cell.configureCell(with: weatherDataSource[indexPath.row])
+            cell.configureCell(with: weatherDataSource[indexPath.section])
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete && forecastDataSourceIsAvailable && weatherDataSourceIsAvailable {
-            weatherDataSource.remove(at: indexPath.row)
-            cityCoordinates.remove(at: indexPath.row)
-            forecastDataSource.remove(at: indexPath.row)
+            weatherDataSource.remove(at: indexPath.section)
+            cityCoordinates.remove(at: indexPath.section)
+            forecastDataSource.remove(at: indexPath.section)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let removedCoordinateElement = cityCoordinates.remove(at: sourceIndexPath.row)
-        cityCoordinates.insert(removedCoordinateElement, at: destinationIndexPath.row)
+        let removedCoordinateElement = cityCoordinates.remove(at: sourceIndexPath.section)
+        cityCoordinates.insert(removedCoordinateElement, at: destinationIndexPath.section)
         
         if weatherDataSourceIsAvailable {
-            let removedWeatherElement = weatherDataSource.remove(at: sourceIndexPath.row)
-            weatherDataSource.insert(removedWeatherElement, at: destinationIndexPath.row)
+            let removedWeatherElement = weatherDataSource.remove(at: sourceIndexPath.section)
+            weatherDataSource.insert(removedWeatherElement, at: destinationIndexPath.section)
         }
         
         if forecastDataSourceIsAvailable {
-            let removedForecastElement = forecastDataSource.remove(at: sourceIndexPath.row)
-            forecastDataSource.insert(removedForecastElement, at: destinationIndexPath.row)
+            let removedForecastElement = forecastDataSource.remove(at: sourceIndexPath.section)
+            forecastDataSource.insert(removedForecastElement, at: destinationIndexPath.section)
         }
     }
     
@@ -213,12 +215,12 @@ extension MainViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if forecastDataSourceIsAvailable {
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            guard let vc = storyboard.instantiateViewController(withIdentifier: "PageViewController") as? PageViewController,
-                indexPath.section == 0 else {
+            guard let vc = storyboard.instantiateViewController(withIdentifier: "PageViewController")
+                    as? PageViewController else {
                 return
             }
             vc.forecastDataSource = forecastDataSource
-            vc.firstIndex = indexPath.row
+            vc.firstIndex = indexPath.section
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -263,6 +265,9 @@ extension MainViewController {
         view.addSubview(mainTableView)
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        mainTableView.sectionHeaderTopPadding = 0
+        mainTableView.sectionHeaderHeight = 0
+        mainTableView.sectionFooterHeight = 7
         mainTableView.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainTableViewCell.identifire)
     }
     
