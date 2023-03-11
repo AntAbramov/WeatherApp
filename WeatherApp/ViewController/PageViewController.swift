@@ -21,8 +21,6 @@ class PageViewController: UIPageViewController {
             guard let vc = storyboard.instantiateViewController(withIdentifier: "CurrentViewController") as? CurrentViewController else {
                 return
             }
-            vc.totalPageCount = forecastDataSource.count
-            vc.currentIndex = count
             vc.forecastModel = forecast
             detailViewControllerArray.append(vc)
             count += 1

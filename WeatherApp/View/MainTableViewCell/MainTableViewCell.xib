@@ -19,8 +19,8 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QJL-VL-TNU">
                         <rect key="frame" x="16" y="10" width="60" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="JBf-75-rtf"/>
-                            <constraint firstAttribute="width" constant="60" id="TFd-Ns-Nsc"/>
+                            <constraint firstAttribute="height" constant="60" id="dUy-Uf-dhH"/>
+                            <constraint firstAttribute="width" constant="60" id="iVg-Hx-sc6"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSQ-8l-8hO">
@@ -30,20 +30,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFl-HT-Vyl">
-                        <rect key="frame" x="84" y="10" width="40" height="27"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                        <rect key="frame" x="84" y="10" width="36" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhP-HA-DC0">
-                        <rect key="frame" x="84" y="45" width="92" height="14.333333333333336"/>
+                        <rect key="frame" x="84" y="42" width="24" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="nhP-HA-DC0" secondAttribute="trailing" priority="999" constant="144" id="0S6-VC-8UX"/>
                     <constraint firstItem="dSQ-8l-8hO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="NVP-8z-g5q"/>
                     <constraint firstAttribute="trailing" secondItem="dSQ-8l-8hO" secondAttribute="trailing" constant="14" id="PTS-al-ixd"/>
                     <constraint firstItem="zFl-HT-Vyl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SQI-lk-gdh"/>
@@ -62,7 +61,7 @@
                 <outlet property="temperatureLabel" destination="dSQ-8l-8hO" id="Ho4-6M-F0z"/>
                 <outlet property="weatherImageView" destination="QJL-VL-TNU" id="Lov-Qf-AUB"/>
             </connections>
-            <point key="canvasLocation" x="94.656488549618317" y="32.394366197183103"/>
+            <point key="canvasLocation" x="94.400000000000006" y="31.773399014778327"/>
         </tableViewCell>
     </objects>
 </document>

@@ -1,16 +1,6 @@
-//
-//  NewDetailViewController.swift
-//  WeatherApp
-//
-//  Created by Anton Abramov on 10.03.2023.
-//
-
 import UIKit
 
 class CurrentViewController: UIViewController {
-    
-    var currentIndex: Int = 0
-    var totalPageCount: Int = 0
     
     var forecastModel: Forecast? {
         didSet {
@@ -29,7 +19,6 @@ class CurrentViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dailyForecastTableView: UITableView!
     @IBOutlet weak var hourlyForecastCollectionView: UICollectionView!
-    @IBOutlet weak var pageControl: UIPageControl!
     
     let dateFormatter = DateFormatter()
     
@@ -37,13 +26,14 @@ class CurrentViewController: UIViewController {
         super.viewDidLoad()
         configureDailyForecastTableView()
         configureHourlyForecastCollectionView()
-        cunfigureNavigationController()
         setMainLabelsText(with: forecastModel)
     }
     
     private func setMainLabelsText(with model: Forecast?) {
         self.cityNameLabel.text = model?.city?.name
-        self.currentTemperatureLabel.text = "\(Int())℃"
+        if let temp = model?.list?.first?.main?.temp {
+            self.currentTemperatureLabel.text = "\(Int(temp))℃"
+        }
         self.descriptionLabel.text = model?.list?.first?.weather?.first?.description
     }
     
@@ -191,11 +181,6 @@ extension CurrentViewController {
         dailyForecastTableView.register(ForecastTableViewCell.nib(), forCellReuseIdentifier: ForecastTableViewCell.identifire)
         dailyForecastTableView.sectionHeaderTopPadding = 0
         dailyForecastTableView.showsVerticalScrollIndicator = false
-    }
-    
-    private func cunfigureNavigationController() {
-        navigationController?.navigationBar.tintColor = .white
-        
     }
     
 }
